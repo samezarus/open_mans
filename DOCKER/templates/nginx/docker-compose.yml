@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+
+  nginx:
+    container_name: '${NPM_HOST}'
+    image: 'nginx'
+    restart: unless-stopped
+    ports:
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      # container's port's
+    environment:
+      TZ: '${TZ}'
+    volumes:
+      # defaul's
+      - ./conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./conf/conf.d:/etc/nginx/conf.d
+      - ./conf/ssl:/etc/nginx/ssl
+      - ./logs:/var/log/nginx
+      # conteiner's content
+
+networks:
+
+  default:
+    external: true
+    name: '${NPM_LAN}' 

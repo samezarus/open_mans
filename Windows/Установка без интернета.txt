@@ -1,0 +1,11 @@
+https://www.youtube.com/watch?v=qygZzlX_cpw
+
+Отключить пк/виртуалку от сети
+
+Когда дошли до ввода учётки:
+
+    shift+F10
+
+    oobe\bypassnro
+
+    Enter

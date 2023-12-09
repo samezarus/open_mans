@@ -1,0 +1,44 @@
+В начале к примеру диск был 60 гб
+
+
+Запустить нужную машину и узнать её идентификатор
+    sudo virsh list
+
+    к примеру это: ubuntu22.04_server 
+
+
+Останавливаем нужную машину через гуи или командой
+    sudo virsh shutdown ubuntu22.04_server
+
+
+Узнать расположение виртуального диагностика
+    sudo virsh domblklist ubuntu22.04_server
+
+    к примеру это: /var/lib/libvirt/images/ubuntu22.04_server.qcow2
+
+
+//Расширить диск на желаемое значение
+//    sudo qemu-img resize /var/lib/libvirt/images/ubuntu22.04_server.qcow2 +40G
+
+
+Запусть нужную машину через гуи или командой
+    sudo virsh start ubuntu22.04_server 
+    sudo virsh blockresize ubuntu22.04_server /var/lib/libvirt/images/ubuntu22.04_server.qcow2 100G
+
+
+Применить изменения размера диска
+    sudo fdisk -l /var/lib/libvirt/images/ubuntu22.04_server.qcow2  
+
+
+Зайти в нужную машину по ssh и выполнить две команды
+    sudo lvm lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+    sudo resize2fs -p /dev/mapper/ubuntu--vg-ubuntu--lv
+
+network 'default' is not active:
+    sudo virsh net-start default
+
+    or
+
+    sudo ifconfig virbr0 down
+    sudo brctl delbr virbr0
+    sudo virsh net-start default

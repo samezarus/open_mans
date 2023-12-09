@@ -1,0 +1,33 @@
+https://docs.gitlab.com/runner/install/
+
+Debian/Ubintu:
+
+    Настройка ранера для проекта (интерфейс GitLab):
+
+        В проекте Settings -> CI/CD -> Runners
+
+        Отклчить Shared runners
+
+        Project runners -> New project runner
+
+        Выбрать платформу
+
+        Задать параметры
+
+        Запомнить url и token
+    
+    Ранер (Не важно на какой машине он будет):
+
+        Установка:
+
+            curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" | sudo bash
+
+            sudo apt-get install gitlab-runner
+
+        Конфигурирование:
+
+            gitlab-runner register
+
+            Выбрать тип (к примеру "shell")
+
+            Ввести ранее запомненные url и token

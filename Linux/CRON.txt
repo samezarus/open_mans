@@ -1,0 +1,22 @@
+LOG's:
+    1:
+
+         * * * * * bash test.sh >> /var/log/test.log 2>&1
+
+    2:
+
+        Open the file
+            /etc/rsyslog.d/50-default.conf
+        
+        Find the line that starts with:
+            #cron.*
+        
+        uncomment that line, save the file, and restart rsyslog:
+            sudo service rsyslog restart
+
+        You should now see a cron log file here:
+            /var/log/cron.log
+
+    3:
+
+        grep CRON /var/log/syslog

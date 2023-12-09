@@ -1,0 +1,4 @@
+~/.config/kwalletrc
+
+[Wallet]
+Enabled=false

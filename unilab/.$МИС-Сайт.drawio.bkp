@@ -1,0 +1,116 @@
+<mxfile host="Electron" modified="2023-04-07T05:50:40.327Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.1.2 Chrome/106.0.5249.199 Electron/21.4.3 Safari/537.36" etag="pIZDhKB3HY-jdf-mntpO" version="21.1.2" type="device">
+  <diagram name="Page-1" id="33zEtIYmJWAdm-G2wWFp">
+    <mxGraphModel dx="1488" dy="915" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="A3zA_QEJCEYbixdY3SYF-1" target="A3zA_QEJCEYbixdY3SYF-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-1" value="1С ЛИС&lt;br&gt;Центр" style="image;html=1;image=img/lib/clip_art/computers/Virtual_Application_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="200" y="80" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="A3zA_QEJCEYbixdY3SYF-2" target="A3zA_QEJCEYbixdY3SYF-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-2" value="Интернет" style="image;html=1;image=img/lib/clip_art/general/Earth_globe_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="600" y="80" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="A3zA_QEJCEYbixdY3SYF-3" target="A3zA_QEJCEYbixdY3SYF-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-3" value="ETL сервис" style="image;html=1;image=img/lib/clip_art/computers/Virtual_Application_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-4" value="Сайт&lt;br&gt;unilab.su" style="image;html=1;image=img/lib/clip_art/computers/Virtual_Application_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="800" y="80" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="A3zA_QEJCEYbixdY3SYF-8" target="A3zA_QEJCEYbixdY3SYF-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-8" value="1С ЛИС&lt;br&gt;РЦР Владивосток" style="image;html=1;image=img/lib/clip_art/computers/Virtual_Application_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="200" y="330" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="A3zA_QEJCEYbixdY3SYF-9" target="A3zA_QEJCEYbixdY3SYF-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="540" />
+              <mxPoint x="310" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-9" value="1С ЛИС&lt;br&gt;РЦР Хабаровск" style="image;html=1;image=img/lib/clip_art/computers/Virtual_Application_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="200" y="490" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="A3zA_QEJCEYbixdY3SYF-10" target="A3zA_QEJCEYbixdY3SYF-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-10" value="1С ЛИС&lt;br&gt;РЦР Иркутск" style="image;html=1;image=img/lib/clip_art/computers/Virtual_Application_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="200" y="650" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="A3zA_QEJCEYbixdY3SYF-11" target="A3zA_QEJCEYbixdY3SYF-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-11" value="Интернет" style="image;html=1;image=img/lib/clip_art/general/Earth_globe_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="400" y="500" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-15" value="Сайт&lt;br&gt;unilab.su" style="image;html=1;image=img/lib/clip_art/computers/Virtual_Application_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="600" y="500" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-17" value="Суточная схема (работает сейчас)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="1020" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-18" value="Онлайн схема 1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="260" width="1020" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="A3zA_QEJCEYbixdY3SYF-21" target="A3zA_QEJCEYbixdY3SYF-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-21" value="1С ЛИС&lt;br&gt;РЦР Владивосток" style="image;html=1;image=img/lib/clip_art/computers/Virtual_Application_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="200" y="880" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="A3zA_QEJCEYbixdY3SYF-23" target="A3zA_QEJCEYbixdY3SYF-27">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="1090" />
+              <mxPoint x="310" y="1090" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-23" value="1С ЛИС&lt;br&gt;РЦР Хабаровск" style="image;html=1;image=img/lib/clip_art/computers/Virtual_Application_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="200" y="1040" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="A3zA_QEJCEYbixdY3SYF-25" target="A3zA_QEJCEYbixdY3SYF-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-25" value="1С ЛИС&lt;br&gt;РЦР Иркутск" style="image;html=1;image=img/lib/clip_art/computers/Virtual_Application_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="200" y="1200" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="A3zA_QEJCEYbixdY3SYF-27" target="A3zA_QEJCEYbixdY3SYF-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-27" value="Интернет" style="image;html=1;image=img/lib/clip_art/general/Earth_globe_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="400" y="1050" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-28" value="Сайт&lt;br&gt;unilab.su" style="image;html=1;image=img/lib/clip_art/computers/Virtual_Application_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="880" y="1050" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-29" value="Онлайн схема 2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="810" width="1020" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="A3zA_QEJCEYbixdY3SYF-30" target="A3zA_QEJCEYbixdY3SYF-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-30" value="МИС" style="image;html=1;image=img/lib/clip_art/computers/Virtual_Application_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="560" y="1050" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="A3zA_QEJCEYbixdY3SYF-33" target="A3zA_QEJCEYbixdY3SYF-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="A3zA_QEJCEYbixdY3SYF-33" value="Интернет" style="image;html=1;image=img/lib/clip_art/general/Earth_globe_128x128.png" vertex="1" parent="1">
+          <mxGeometry x="720" y="1050" width="80" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

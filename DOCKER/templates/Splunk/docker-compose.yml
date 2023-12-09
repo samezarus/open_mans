@@ -1,0 +1,9 @@
+version: '3'
+services:
+  splunk:
+    image: splunk/splunk:7.0.3
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - PLUNK_PASSWORD=<password>
+    ports:
+      - 8001:8000

@@ -1,0 +1,62 @@
+Вариант 1: (https://theappsguy.dev/setting-up-sentry-self-hosted)
+
+    git clone https://github.com/getsentry/self-hosted sentry
+
+    cd ./sentry
+
+    ./install.sh
+
+    docker-compose up -d
+
+    http://{server_ip}:9000/
+
+
+Вариант 2: (https://hub.docker.com/_/sentry/)
+
+    docker system prune --volumes --all
+
+    get key:
+        docker run --rm sentry config generate-secret-key
+
+    docker run -d --name sentry-redis redis 
+
+    docker run -d --name sentry-postgres \
+    -v pgdata:/var/lib/postgresql/data \
+    -e POSTGRES_USER='<db_user>' \
+    -e POSTGRES_PASSWORD='<db_password>' \
+    postgres
+
+    docker run -it --rm \
+    -e SENTRY_SECRET_KEY='<key>' \
+    -e SENTRY_DB_USER='<db_user>' \
+    -e SENTRY_DB_PASSWORD='<db_password>' \
+    --link sentry-postgres:postgres \
+    --link sentry-redis:redis \
+    sentry upgrade
+
+    docker run -d --name my-sentry \
+    -p 9000:9000 \
+    -e SENTRY_SECRET_KEY='<key>' \
+    -e SENTRY_DB_USER='<db_user>' \
+    -e SENTRY_DB_PASSWORD='<db_password>' \
+    --link sentry-postgres:postgres \
+    --link sentry-redis:redis \
+    sentry
+
+    docker run -d --name sentry-cron \
+    -e SENTRY_SECRET_KEY='<key>' \
+    -e SENTRY_DB_USER='<db_user>' \
+    -e SENTRY_DB_PASSWORD='<db_password>' \
+    --link sentry-postgres:postgres \
+    --link sentry-redis:redis \
+    sentry run cron
+
+    docker run -d --name sentry-worker-1 \
+    -e SENTRY_SECRET_KEY='<key>' \
+    -e SENTRY_DB_USER='<db_user>' \
+    -e SENTRY_DB_PASSWORD='<db_password>' \
+    --link sentry-postgres:postgres \
+    --link sentry-redis:redis \
+    sentry run worker
+
+    http://<server>:9000/

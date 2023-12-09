@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+
+  npm:
+    container_name: '${NPM_HOST}'
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      # default
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '${NPM_ADMINPANEL}:81' # Admin Web Port
+      # container's port's
+    environment:
+      TZ: '${TZ}'
+      DB_SQLITE_FILE: "/data/database.sqlite"
+      DISABLE_IPV6: 'true'
+    volumes:
+      # default
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+      # container's static, media, etc ...
+
+networks:
+
+  default:
+    external: true
+    name: '${NPM_LAN}'

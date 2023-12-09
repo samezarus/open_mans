@@ -1,0 +1,8 @@
+# list of tuples
+result = session.execute(statement).all()
+
+# list of first element of each row (i.e. User objects)
+result = session.execute(statement).scalars().all()
+
+==================================================================================================================================================
+

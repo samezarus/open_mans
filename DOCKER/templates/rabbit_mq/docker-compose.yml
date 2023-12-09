@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+
+    rabbit_mq:
+        container_name: 'rabbit_mq'
+        image: rabbitmq:3-management-alpine
+        restart: always
+        ports:
+            - 5672:5672
+            - 15672:15672
+        environment:
+            RABBITMQ_DEFAULT_USER: admin
+            RABBITMQ_DEFAULT_PASS: admin
+        # volumes:
+        # - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        # - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq

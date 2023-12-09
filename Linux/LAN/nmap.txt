@@ -1,0 +1,5 @@
+sudo apt-get install nmap
+
+ping range:
+    nmap -sP 192.168.1.1/24
+

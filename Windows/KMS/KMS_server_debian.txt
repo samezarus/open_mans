@@ -1,0 +1,67 @@
+https://blog.it-kb.ru/2022/09/29/kms-activation-server-for-microsoft-windows-server-and-office-based-on-debian-linux-11-bullseye-and-vlmcsd-service-package/
+
+
+
+Сборка пакета vlmcsd под Debian:
+
+    apt install git build-essential debhelper -y
+
+    mkdir ~/vlmcsd-build
+    cd ~/vlmcsd-build
+
+    git clone https://github.com/Wind4/vlmcsd
+    cd ~/vlmcsd-build/vlmcsd
+
+    git submodule update --init debian
+
+    dpkg-buildpackage -rfakeroot -D -us -uc
+
+    cd ~/vlmcsd-build
+
+    dpkg -i ./vlmcsd_1113_amd64.deb
+
+    Смотрим запустилась ли служба:
+
+        systemctl status vlmcsd.service
+
+Настройка службы vlmcsd:
+
+    sudo nano /etc/vlmcsd/vlmcsd.ini:
+
+        Раскоментировать:
+
+            Listen = 0.0.0.0:1688
+            LogFile = /var/log/vlmcsd/vlmcsd.log
+
+    mkdir /var/log/vlmcsd
+
+    systemctl restart vlmcsd.service
+
+    Смотрим что сервис слушает порт 1688:
+
+        ss -lnptu | grep 1688
+    
+    ХЗ для чего пользак (для записи логов ?):
+
+        useradd -s /usr/sbin/nologin -r -M vlmcsd
+
+        chown -R vlmcsd:vlmcsd /var/log/vlmcsd
+
+        systemctl edit vlmcsd.service:
+
+            После двух верхних комменатириев !!! добавляем:
+
+                [Service]
+                User=vlmcsd
+                Group=vlmcsd
+
+        systemctl daemon-reload
+        systemctl restart vlmcsd.service
+        systemctl cat vlmcsd.service
+    
+    Проверяем: состояние службы:
+
+        systemctl status vlmcsd.service
+        ss -lnptu | grep 1688
+        ps -aux | grep vlmcsd
+        cat /var/log/vlmcsd/vlmcsd.log

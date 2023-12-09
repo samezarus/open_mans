@@ -1,0 +1,11 @@
+deb:
+    
+    sudo apt install <имя пакета>.deb
+
+.tar.gz:
+    
+    Скачать <имя архива>
+
+    Перейти в папку с <имя архива>
+
+    mkdir <имя пакета> && tar -xvf <имя архива>.tar.gz -C <имя пакета> --strip-components 1

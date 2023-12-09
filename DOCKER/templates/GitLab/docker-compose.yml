@@ -1,0 +1,25 @@
+# https://docs.gitlab.com/ee/install/docker.html
+
+# root-password:
+# sudo docker exec -it gitlab-ce grep 'Password:' /etc/gitlab/initial_root_password    (deleted after 24 hours)
+
+version: '3.6'
+services:
+  gitlab-ce:
+    container_name: gitlab-ce
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    hostname: '<ip/dns>'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://<ip/dns>:8929'
+        GITLAB_ROOT_PASSWORD=
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+    ports:
+      - '8929:8929'
+      - '2222:22'
+    volumes:
+      - './config:/etc/gitlab'
+      - './logs:/var/log/gitlab'
+      - './data:/var/opt/gitlab'
+    shm_size: '256m'

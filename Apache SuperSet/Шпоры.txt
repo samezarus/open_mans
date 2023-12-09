@@ -1,0 +1,11 @@
+Шпоры
+
+UTC (отключение учёта UTC):
+
+    Для корректности отображения данных нужно явно указать timezone
+
+    <поле timestamp> at time zone '<UTC смещение>'
+    
+    Пример:
+
+        feedback_dt at time zone 'Asia/Vladivostok'

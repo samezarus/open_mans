@@ -1,0 +1,4 @@
+Delete:
+
+    /home/sameza/.config/JetBrains/PyCharm<ver>/.lock
+

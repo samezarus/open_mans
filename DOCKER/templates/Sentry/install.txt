@@ -1,0 +1,55 @@
+get key:
+    docker run --rm sentry config generate-secret-key
+
+docker run -d \
+--name sentry-redis \
+--restart=always \
+redis 
+
+docker run -d \
+--name sentry-postgres \
+--restart=always \
+-v pgdata:/var/lib/postgresql/data \
+-e POSTGRES_USER='sentry' \
+-e POSTGRES_PASSWORD='A&k4Aj71_A7$' \
+postgres
+
+init:
+    docker run -it --rm \
+    -e SENTRY_SECRET_KEY='<key>' \
+    -e SENTRY_DB_USER='sentry' \
+    -e SENTRY_DB_PASSWORD='A&k4Aj71_A7$' \
+    --link sentry-postgres:postgres \
+    --link sentry-redis:redis \
+    sentry upgrade
+
+docker run -d \
+--name my-sentry \
+--restart=always \
+-p 9000:9000 \
+-e SENTRY_SECRET_KEY='<key>' \
+-e SENTRY_DB_USER='sentry' \
+-e SENTRY_DB_PASSWORD='A&k4Aj71_A7$' \
+--link sentry-postgres:postgres \
+--link sentry-redis:redis \
+sentry
+
+docker run -d \
+--name sentry-cron \
+--restart=always \
+-e SENTRY_SECRET_KEY='<key>' \
+-e SENTRY_DB_USER='sentry' \
+-e SENTRY_DB_PASSWORD='A&k4Aj71_A7$' \
+--link sentry-postgres:postgres \
+--link sentry-redis:redis \
+sentry run cron
+
+docker run -d \
+--name sentry-worker-1 \
+--restart=always \
+-e SENTRY_SECRET_KEY='<key>' \
+-e SENTRY_DB_USER='sentry' \
+-e SENTRY_DB_PASSWORD='A&k4Aj71_A7$' \
+--link sentry-postgres:postgres \
+--link sentry-redis:redis \
+sentry run worker

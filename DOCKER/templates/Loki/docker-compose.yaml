@@ -1,0 +1,66 @@
+# При использовании Nginx Proxy Manager "ports" нужно закоментировать
+
+version: "3.8"
+
+services:
+
+  loki:
+    container_name: ${LOKI_HOST}
+    image: grafana/loki:2.9.0
+    environment:
+      - TZ=${TZ}
+    ports:
+      - "${LOKI_HTTP_PORT_EXT}:${LOKI_HTTP_PORT}"
+    command: -config.file=/etc/loki/local-config.yaml
+
+  promtail:
+    container_name: ${PROMTAIL_HOST}
+    image: grafana/promtail:2.9.0
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ./logs/promtail/:/var/log/promtail
+    command: -config.file=/etc/promtail/config.yml
+
+  grafana:
+    container_name: ${GRAFANA_HOST}
+    environment:
+      - TZ=${TZ}
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+      - GF_SERVER_HTTP_PORT=${GRAFANA_HTTP_PORT}
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      # - GF_AUTH_ANONYMOUS_ENABLED=true
+      # - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    volumes:
+      #- ./config/grafana:/etc/grafana
+      #- ./data/grafana:/var/lib/grafana
+      - ./logs/grafana:/var/log/grafana
+    entrypoint:
+      - sh
+      - -euc
+      - |
+        mkdir -p /etc/grafana/provisioning/datasources
+        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
+        apiVersion: 1
+        datasources:
+        - name: Loki
+          type: loki
+          access: proxy
+          orgId: 1
+          url: http://${LOKI_HOST}:${LOKI_HTTP_PORT}
+          basicAuth: false
+          isDefault: true
+          version: 1
+          editable: false
+        EOF
+        /run.sh
+    image: grafana/grafana:latest
+    ports:
+      - "${GRAFANA_HTTP_PORT_EXT}:${GRAFANA_HTTP_PORT}"
+
+# Для Nginx Proxy Manager
+# networks:
+#   default:
+#     external: true
+#     name: '${NPM_LAN}'

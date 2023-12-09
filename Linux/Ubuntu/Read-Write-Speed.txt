@@ -1,0 +1,17 @@
+https://webhostinggeeks.com/howto/how-to-check-disk-read-write-speed-in-linux/
+
+
+disk = /dev/sda1
+
+sudo apt-get install hdparm
+
+read test:
+    sudo hdparm -t <disk>
+
+write test:
+    sudo dd if=<disk> of=test bs=1G count=1 oflag=direct
+
+clear test data:
+    sudo rm test
+
+

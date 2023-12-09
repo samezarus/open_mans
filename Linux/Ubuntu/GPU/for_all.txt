@@ -1,0 +1,30 @@
+Список карт:
+
+	lspci | grep VGA
+	
+	or
+	
+	sudo lshw -C display
+	
+nvidia:
+
+	Список драйверов:
+	
+		nvidia-smi
+		
+			sudo apt install nvidia-utils-418-server  # version 418.226.00-0ubuntu4, or
+			sudo apt install nvidia-utils-510-server  # version 510.47.03-0ubuntu3
+			sudo apt install nvidia-utils-390         # version 390.157-0ubuntu0.22.04.1
+			sudo apt install nvidia-utils-450-server  # version 450.216.04-0ubuntu0.22.04.1
+			sudo apt install nvidia-utils-470         # version 470.161.03-0ubuntu0.22.04.1
+			sudo apt install nvidia-utils-470-server  # version 470.161.03-0ubuntu0.22.04.1
+			sudo apt install nvidia-utils-510         # version 510.108.03-0ubuntu0.22.04.1
+			sudo apt install nvidia-utils-515         # version 515.86.01-0ubuntu0.22.04.1
+			sudo apt install nvidia-utils-515-server  # version 515.86.01-0ubuntu0.22.04.1
+			sudo apt install nvidia-utils-525         # version 525.78.01-0ubuntu0.22.04.1
+			sudo apt install nvidia-utils-525-server  # version 525.60.13-0ubuntu0.22.04.1
+
+		
+	Установка драйверов:
+
+		sudo apt install nvidia-driver-510

@@ -1,0 +1,41 @@
+https://dker.ru/docs/docker-engine/engine-reference/command-line-reference/docker-commands/
+
+-----------------------------------------------------------------------------------------------------------------
+
+Restart:
+    docker restart <имя контейнера>
+    
+-----------------------------------------------------------------------------------------------------------------
+
+https://webhamster.ru/mytetrashare/index/mtb339/1547023314t2f3a1tph0
+
+Удалить неиспользуемые образы без тегов:
+    docker image prune
+
+Удалить все неиспользуемые образы:
+    docker image prune --all
+
+Удалить остановленные контейнеры:
+    docker container prune
+
+Удалить неиспользуемые тома:
+    docker volume prune
+
+Удалить все неиспользуемые объекты Docker, кроме томов:
+    docker system prune
+
+Удалить все неиспользуемые объекты Docker:
+    docker system prune --volumes --all
+
+-----------------------------------------------------------------------------------------------------------------
+Сети:
+    https://habr.com/ru/post/554190/
+
+    Создать сеть:
+        docker network create <имя сети>
+
+    Добавить контейнер в сеть:
+        docker network connect <имя сети> <имя запущенного контейнера>
+
+    Удалить сеть:
+        docker network rm <имя сети>

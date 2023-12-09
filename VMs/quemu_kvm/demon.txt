@@ -1,0 +1,5 @@
+systemctl start libvirtd
+systemctl stop libvirtd
+systemctl restart libvirtd
+
+systemctl stats libvirtd

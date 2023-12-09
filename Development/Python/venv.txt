@@ -1,0 +1,25 @@
+Установка:
+
+    sudo apt install -y python3-pip python3.10-venv && pip install virtualenv
+    
+    # sudo apt install python3-pip -y
+    # sudo apt install python3.10-venv -y
+    # pip install virtualenv
+
+Создание для проекта:
+
+    Зайти в папку проекта
+    
+    python3 -m venv ./venv или python -m venv ./venv
+
+Активация:
+
+    source ./venv/bin/activate
+
+Деактивация:
+
+    deactivate
+    
+Установка зависимостей:
+
+    pip install -r ./requirements.txt

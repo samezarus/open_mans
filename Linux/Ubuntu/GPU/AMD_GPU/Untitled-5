@@ -1,0 +1,7 @@
+https://www.amd.com/en/support/kb/release-notes/rn-amdgpu-unified-linux-22-20
+
+sudo apt-get update
+sudo apt-get dist-upgrade
+
+sudo apt-get install ./<имя пакета>.deb
+sudo apt-get update

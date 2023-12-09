@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+
+  npm:
+    container_name: '${NPM_HOST}'
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      # default
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '${NPM_ADMINPANEL}:81' # Admin Web Port
+      # container's port's
+    environment:
+      TZ: '${TZ}'
+      DB_MYSQL_HOST: '${DB_HOST}'
+      DB_MYSQL_PORT: ${DB_PORT}
+      DB_MYSQL_NAME: '${DB_NAME}'
+      DB_MYSQL_USER: '${DB_USER}'
+      DB_MYSQL_PASSWORD: '${DB_PASSWORD}'
+      DISABLE_IPV6: 'true'
+    volumes:
+      # default
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+      # container's static, media, etc ...
+    depends_on:
+      - '${DB_HOST}'
+
+  npm-db:
+    container_name: '${DB_HOST}'
+    image: 'jc21/mariadb-aria:latest'
+    restart: unless-stopped
+    environment: # https://mariadb.com/kb/en/mariadb-environment-variables/
+      TZ: '${TZ}'
+      MYSQL_TCP_PORT: ${DB_PORT}
+      MYSQL_DATABASE: '${DB_NAME}'
+      MYSQL_USER: '${DB_USER}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASSWORD}'
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+networks:
+
+  default:
+    external: true
+    name: '${NPM_LAN}'

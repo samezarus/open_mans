@@ -1,0 +1,33 @@
+https://linux.how2shout.com/2-ways-to-install-postman-on-debian-11-bullseye-or-10-buster/
+
+1:
+    sudo apt update && sudo apt install wget -y
+
+    wget https://dl.pstmn.io/download/latest/linux64
+
+    sudo tar -xvf linux64 -C /usr/bin
+
+    echo 'export PATH="$PATH:/usr/bin/Postman"' >> ~/.bashrc
+
+    sudo nano /usr/share/applications/Postman.desktop
+
+    [Desktop Entry]
+    Name=Postman API Tool
+    GenericName=Postman
+    Comment=Testing API
+    Exec=/usr/bin/Postman/Postman
+    Terminal=false
+    X-MultipleArgs=false
+    Type=Application
+    Icon=/usr/bin/Postman/app/resources/app/assets/icon.png
+    StartupWMClass=Postman
+    StartupNotify=true
+
+    cp /usr/share/applications/Postman.desktop ~/Desktop/
+
+2:
+    sudo apt update
+    sudo apt install snapd
+    sudo snap install core
+
+    sudo snap install postman

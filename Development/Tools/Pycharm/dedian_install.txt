@@ -1,0 +1,54 @@
+https://linux.how2shout.com/2-ways-to-install-pycharm-python-ide-on-debian-11-bullseye-linux/
+
+1:
+    Скачать:
+        https://www.jetbrains.com/pycharm/download/
+
+    cd Downloads
+
+    mkdir pycharm && tar -xvf pycharm-*.tar.gz -C pycharm --strip-components 1
+
+    sudo mv pycharm /opt/
+
+    Тест запуска:
+        sh /opt/pycharm/bin/pycharm.sh
+
+    Ярлык:
+        nano ~/Desktop/Pycharm.desktop
+
+        [Desktop Entry]
+        Version=1.0
+        Type=Application
+        Name=Pycharm
+        Comment=IDE
+        Exec=/opt/pycharm/bin/pycharm.sh
+        Icon=/opt/pycharm/bin/pycharm.png
+        Terminal=false
+        StartupNotify=false
+
+        chmod u+x ~/Desktop/Pycharm.desktop
+
+        sudo cp ~/Desktop/Pycharm.desktop /usr/share/applications/
+
+2:
+    sudo apt update
+
+    sudo apt install snapd
+    sudo systemctl enable snapd --now
+    sudo ln -s /var/lib/snapd/snap /snap
+
+    sudo snap install pycharm-community --classic --edge
+    или
+    sudo snap install pycharm-educational --classic --edge
+    или
+    sudo snap install pycharm-professional --classic --edge
+
+    Тест запуска:
+        snap run pycharm-community
+
+    Ярлык:
+        sudo ln -s /etc/profile.d/apps-bin-path.sh /etc/X11/Xsession.d/99snap
+
+        sudo nano /etc/login.defs
+
+        ENV_PATH PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin

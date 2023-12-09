@@ -1,0 +1,22 @@
+https://linuxways.net/debian/how-to-change-date-time-and-timezone-in-debian-10/
+
+sudo timedatectl set-timezone Asia/Vladivostok
+
+timedatectl set-ntp no
+
+==========================================================================================================================================================================
+
+# https://www.digitalocean.com/community/tutorials/how-to-set-up-time-synchronization-on-debian-10
+
+# sudo timedatectl set-timezone Africa/Banjul
+
+# sudo apt install ntp
+
+# ntpq -p
+
+# sudo apt purge ntp
+
+# sudo apt install systemd-timesyncd
+
+# sudo systemctl start systemd-timesyncd
+

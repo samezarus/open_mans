@@ -1,0 +1,124 @@
+Глосарий:
+
+    NPM    - Nginx Proxy Manager (./npm-mysql/docker-compose.yml или ./npm-sqlite/docker-compose.yml)
+    Проект - docker-compose файл
+    Конфиг - файл .env (./npm-mysql/.env или ./npm-sqlite/.env)
+
+Описательная часть:
+    
+    1. Для связи с другими проектами служит сеть NPM_LAN из конфига. 
+    Её стоит добавить предварительно в каждый проект. Если в проекте не используется конфиг,
+    то "${NPM_LAN}" заменить на строчное название из конфига NPM.
+
+    Пример:
+        networks:
+
+            default:
+                external: true
+                name: '${NPM_LAN}'
+
+    2. Внутри проекта у контейнера, на который будет проксироваться web доступ:
+
+        2.1. Не должно быть открытых портов "ports: xxxxx:xxxxx". Следует учесть, что используется
+        преопределённый порт контейнера (Django - 8000). Если нужен другой порт, то его следует переопределить
+        в "environment" или в других местах (Django: python manage.py runserver 0.0.0.0:8888).
+
+        К примеру: 
+            Есть проект Django + Postgres. 
+            У контейнера Django не должно быть активного параметра "ports".
+            Свзанно это с тем, что проект уже добавлен в публичную сеть NPM_LAN и наличие 
+            заданного "ports" опубликает указанный порт на сервере непосредственно,
+            минуя NPM.
+
+        2.2. Обязательно должен быть задан параметр "container_name: bla-bla". Причём
+        он должен удовлетварять неймингу для DNS-имён и не должен содержать "_".
+
+        К примеру:
+            "container_name: bla-bla" - это допустимое значение
+            "container_name: bla_bla" - это недопустимое значение
+
+    3. Проксирование NPM в Проект:
+
+        3.1. Вводные прокта:
+
+            Сервер - http://server.com (без SSL)
+            Django + Postgres (Django контейнер - django-app)
+            В сети NPM_LAN
+            Django порт - 8000
+            Желаемый внешний порт сервера для Django - 8111 (http://server.com:8111)
+            static - /home/prod/ppf/staticfiles/ (на http://server.com)
+            media - /home/prod/ppf/media/ (на http://server.com)
+            ssl - /home/prod/ppf/ssl/ (на http://server.com)
+
+        3.2. Добавить в NPM проксирование портов:
+
+            services -> npm -> ports
+                - '8111:8000'
+
+        3.3. Добавить в NPM вольюм для static/media:
+
+            services -> npm -> volumes
+                - /home/prod/ppf/:/home/ppf/
+
+        3.4. Перейти в админ-панель NPM:
+
+            http://server.com:81/nginx/proxy (Proxy Hosts)
+
+            [Add Proxy Host]
+
+            3.4.1. HTTP:
+
+                Details:
+
+                    Domain Names - server.com:8111
+
+                    Scheme - http
+
+                    Forward Hostname / IP - django-app
+
+                    Forward Port - 8000
+
+                Advanced:
+
+                    listen  8111;
+
+                    location /static/ {
+                        autoindex on;
+                        alias /home/ppf/staticfiles/;
+                    }
+
+                    location /media/ {
+                        autoindex on;
+                        alias /home/ppf/media/;
+                    }
+
+            3.4.2. HTTPS:
+
+                Details:
+
+                    Domain Names - server.com:8111
+
+                    Scheme - http
+
+                    Forward Hostname / IP - django-app
+
+                    Forward Port - 8000
+
+                SSL:
+
+                    SSL Certificate - Выбрать группу сертификатов, которую можно создать 
+                    в http://server.com:81/nginx/certificates (SSL Certificates)
+
+                Advanced:
+
+                    listen  8111 ssl http2;
+
+                    location /static/ {
+                        autoindex on;
+                        alias /home/ppf/staticfiles/;
+                    }
+
+                    location /media/ {
+                        autoindex on;
+                        alias /home/ppf/media/;
+                    }

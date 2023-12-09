@@ -1,0 +1,3 @@
+https://www.site24x7.com/learn/linux/traffic-monitor.html
+
+iftop (sudo apt install iftop -y)

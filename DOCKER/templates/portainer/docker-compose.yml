@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+
+  portainer:
+    container_name: ${PORTAINER_HOST}
+    image: 'portainer/portainer-ce:latest'
+    restart: always
+    # Порты стоит скрыть что бы не светить их во вне. (8000, 9000, 9443)
+    ports:
+      - '${PORTAINER_PORT_EXT}:${PORTAINER_PORT}'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data:/data
+
+# Сеть при использовании Nginx Proxy Manager (что бы не светить порт БД во вне, но что бы другие контейнеры могли с ней работать).
+# networks:
+#   default:
+#     external: true
+#     name: '${NPM_LAN}'

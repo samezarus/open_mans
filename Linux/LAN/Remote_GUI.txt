@@ -1,0 +1,9 @@
+https://phoenixnap.com/kb/ubuntu-remote-desktop-from-windows
+
+sudo apt update
+
+sudo apt install xrdp -y
+
+sudo systemctl status xrdp
+
+port 3389

@@ -1,0 +1,1 @@
+cd /home/sameza/PROJECTS/ML/stable-diffusion-webui/ && bash ./webui.sh --listen --port 7860 --device-id 0

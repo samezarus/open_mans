@@ -1,0 +1,5 @@
+https://www.cyberciti.biz/tips/linux-send-wake-on-lan-wol-magic-packets.html
+
+sudo apt-get install wakeonlan
+
+wakeonlan <mac-address>

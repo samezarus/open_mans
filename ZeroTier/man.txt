@@ -1,0 +1,17 @@
+Install:
+    https://www.zerotier.com/download/
+
+    curl -s https://install.zerotier.com | sudo bash
+
+Add to client "Node Id" to web panel:
+
+    *** Success! You are ZeroTier address [ <Node Id> ].
+
+    https://my.zerotier.com/network/<network-id>
+
+    Manually Add Member
+
+Join client:
+    Get <network-id> from https://my.zerotier.com/network
+
+    sudo zerotier-cli join <network-id>

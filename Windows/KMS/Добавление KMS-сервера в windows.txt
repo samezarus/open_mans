@@ -1,0 +1,17 @@
+https://blog.it-kb.ru/2022/09/29/kms-activation-server-for-microsoft-windows-server-and-office-based-on-debian-linux-11-bullseye-and-vlmcsd-service-package/
+
+
+GVLK ключ:
+
+    https://learn.microsoft.com/en-us/windows-server/get-started/kms-client-activation-keys
+
+    или
+
+    ./client_activation_and_product_keys.txt
+
+
+Открыть PowerShell от имени администратора:
+
+    slmgr.vbs -ipk <GVLK ключ>
+    slmgr.vbs -skms <KMS-сервер(IP/FQDN)>
+    slmgr.vbs -ato

@@ -1,0 +1,3 @@
+Help -> Find Action -> Registry
+
+editor.distraction.free.mode |v|

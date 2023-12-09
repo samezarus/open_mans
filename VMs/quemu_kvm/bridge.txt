@@ -1,0 +1,33 @@
+Узнать имя физического интерфеса хостовой машины:
+    ip a
+
+    по ip-адресу определить имя (к прмеру "enp0s31f6")
+
+
+Под root:
+    Открыть файл /etc/networ/interfaces
+
+    Добавить строки:
+        auto lo
+        iface lo inet loopback
+
+        auto br0
+        iface br0 inet dhcp
+        bridge_ports enp0s31f6
+        bridge_stp off
+        bridge_fd 0
+        bridge_maxwait 0
+
+    Пеерзапустить сетевую службу:
+        systemctl restart networking.service
+
+Теперь все виртуалки будут смотреть своими сетевыми интерфейсами в ту же сеть,
+что и хостовая машина.
+
+зы:
+    Консольно посмотреть/изменить настройки сети:
+        nmtui
+        
+        
+ubunu 22.04:
+	https://www.answertopia.com/ubuntu/creating-an-ubuntu-kvm-networked-bridge-interface/

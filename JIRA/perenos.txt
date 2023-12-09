@@ -1,0 +1,7 @@
+Выгрузка БД из контейнера:
+docker exec -t jira_postgresql_1 pg_dumpall -c -U superset > db.sql
+
+Volume с данными:
+    /var/lib/docker/volumes/jira_jiradata/_data
+
+    tar -zcvf ./docker_volume.tar.gz /var/lib/docker/volumes/jira_jiradata/_data

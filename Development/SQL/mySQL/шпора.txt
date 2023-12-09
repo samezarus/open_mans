@@ -1,0 +1,14 @@
+shell (с вводом пароля):
+    mysqldump -u <db_user> -p --no-tablespaces <db_name> > <dump_file_name>.sql
+
+
+shell (без ввода пароля):
+    В корне пользователя создать файл:
+        > .my.cnf
+
+    Добавить параметры в .my.cnf:
+        [mysqldump]
+        user=<db_user>
+        password=<db_password>
+
+    mysqldump -u <db_user> --no-tablespaces <db_name> > <dump_file_name>.sql

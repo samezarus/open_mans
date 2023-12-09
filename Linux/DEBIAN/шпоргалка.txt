@@ -1,0 +1,46 @@
+SUDO:
+    apt update
+    apt install sudo
+    sudo usermod -a -G sudo <user> - пользователя к sudo
+
+    без пароля:
+        /etc/sudoers.d
+            <user> ALL=(ALL:ALL) NOPASSWD: ALL
+
+Create user:
+    adduser <user>
+
+Delete user:
+    deluser <user>
+
+Add user to group:
+    sudo usermod -a -G <group> <user>
+    
+        
+        sudo usermod -a -G ssh <user> - пользователя к ssh
+
+Разрешение пользовотелю на вход по ssh:
+    mcedit /etc/ssh/sshd_config
+        AllowUsers <user1> <user2> ...
+
+Список сессий:
+    loginctl
+
+Выкинуть пользователя из всех сессий:
+    sudo loginctl terminate-user root
+    
+ifconfig:
+    apt update
+    apt install net-tools
+    /usr/sbin/ifconfig
+
+DOCKER:
+    https://docs.docker.com/engine/install/debian/
+
+DOCKER-COMPOSE:
+    apt install docker-compose -y
+    
+Найти путь к утилите:
+    whereis <утилита>
+
+

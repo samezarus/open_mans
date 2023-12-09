@@ -1,0 +1,4 @@
+sudo adduser <user_name>
+
+sudo right:
+	sudo usermod -a -G sudo <user_name>
