@@ -1,0 +1,7 @@
+sudo apt install tcpflow
+
+mkdir http_logs
+
+cd http_logs
+
+tcpflow dst port 80
