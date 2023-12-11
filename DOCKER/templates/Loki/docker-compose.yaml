@@ -5,16 +5,16 @@ version: "3.8"
 services:
 
   loki:
-    container_name: ${LOKI_HOST}
+    container_name: ${L}
     image: grafana/loki:2.9.0
     environment:
       - TZ=${TZ}
     ports:
-      - "${LOKI_HTTP_PORT_EXT}:${LOKI_HTTP_PORT}"
+      - "${L_HTTP_PORT_EXT}:${L_HTTP_PORT}"
     command: -config.file=/etc/loki/local-config.yaml
 
   promtail:
-    container_name: ${PROMTAIL_HOST}
+    container_name: ${P}
     image: grafana/promtail:2.9.0
     environment:
       - TZ=${TZ}
@@ -23,12 +23,12 @@ services:
     command: -config.file=/etc/promtail/config.yml
 
   grafana:
-    container_name: ${GRAFANA_HOST}
+    container_name: ${G}
     environment:
       - TZ=${TZ}
-      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER}
-      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
-      - GF_SERVER_HTTP_PORT=${GRAFANA_HTTP_PORT}
+      - GF_SECURITY_ADMIN_USER=${G_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${G_PASSWORD}
+      - GF_SERVER_HTTP_PORT=${G_HTTP_PORT}
       - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
       # - GF_AUTH_ANONYMOUS_ENABLED=true
       # - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
@@ -48,7 +48,7 @@ services:
           type: loki
           access: proxy
           orgId: 1
-          url: http://${LOKI_HOST}:${LOKI_HTTP_PORT}
+          url: http://${L}:${L_HTTP_PORT}
           basicAuth: false
           isDefault: true
           version: 1
@@ -57,7 +57,7 @@ services:
         /run.sh
     image: grafana/grafana:latest
     ports:
-      - "${GRAFANA_HTTP_PORT_EXT}:${GRAFANA_HTTP_PORT}"
+      - "${G_HTTP_PORT_EXT}:${G_HTTP_PORT}"
 
 # Для Nginx Proxy Manager
 # networks:
