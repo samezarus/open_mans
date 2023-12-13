@@ -3,7 +3,7 @@ version: "3.5"
 services:
 
     # https://hub.docker.com/_/postgres
-    postgres-test:
+    postgres:
         container_name: '${DB_HOST}'
         image: postgres
         restart: always

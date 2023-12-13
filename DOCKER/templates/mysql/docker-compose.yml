@@ -1,19 +1,20 @@
 # Use root/example as user/password credentials
-version: '3.1'
+version: '3.5'
 
 services:
 
   mysql:
-    container_name: mysql
+    container_name: ${DB_HOST}
     image: mysql
     # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
     # (this is just an example, not intended to be a production configuration)
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_DATABASE: admin
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_TCP_PORT: ${DB_PORT}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD_ROOT}
     ports:
-      - 3306:3306
+      - ${DB_PORT_EXT}:${DB_PORT}
