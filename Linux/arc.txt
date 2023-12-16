@@ -1,0 +1,13 @@
+create:
+
+    tar -cf ./1txt.tar ./1.txt
+    
+    tar -cf ./txts.tar ./*.txt
+
+    tar -cf ./dir.tar ./
+
+unpack:
+
+    tar -xvf ./arc.tar
+
+    tar -xvf ./arc.tar -C ./folder1
