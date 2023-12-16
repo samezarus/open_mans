@@ -6,5 +6,13 @@ up:
 down:
 	docker-compose down -v
 
-restart:
-	docker restart ${PORTAINER_HOST}
+restart: down up
+
+cli:
+	docker exec -it ${PORTAINER} /bin/bash
+
+logs:
+	docker logs -f ${PORTAINER}
+
+env:
+	docker exec -it ${PORTAINER} printenv
