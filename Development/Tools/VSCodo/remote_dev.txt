@@ -1,0 +1,15 @@
+on linux server:
+    
+    sudo apt update
+
+    sudo apt install gcc clang llvm g++ valgrind make cmake build-essential
+
+    sudo reboot
+
+in vscode:
+
+    enter in "extentions" (CTRL + SHIFT + X)
+
+    install "Remote - SSH"
+
+    ...
