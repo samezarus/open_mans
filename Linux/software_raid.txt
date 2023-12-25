@@ -1,0 +1,41 @@
+https://www.linuxbabe.com/linux-server/linux-software-raid-1-setup
+https://unixcop.com/configure-external-raid-on-ubuntu-centos-redhat/
+https://bobcares.com/blog/removal-of-mdadm-raid-devices/
+
+
+sudo apt install mdadm
+
+
+Команды:
+
+    Cписок массивов:
+
+        cat /proc/mdstat
+
+    Создать массив:
+
+        raid 1:
+
+            sudo mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sda /dev/sdb
+
+    Удалить массив:
+
+        1. Отмонтировать массив:
+            umount /dev/md0
+        
+        2. Остановить массив:
+            mdadm --stop /dev/md0
+
+        3. Очистить суперблоки:
+            mdadm --zero-superblock /dev/sda
+            ...
+        
+        4. Удалить массив:
+            mdadm --remove /dev/md0
+
+
+    Статус диска/дисков (уже состоящих в каких-либо массивах):
+
+        mdadm --examine /dev/sda
+
+        mdadm --examine /dev/sda /dev/sdb
