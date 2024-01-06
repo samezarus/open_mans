@@ -1,4 +1,6 @@
- 
+https://www.reddit.com/r/homelab/comments/b5xpua/the_ultimate_beginners_guide_to_gpu_passthrough/?rdt=48795&onetap_auto=true
+
+
 https://www.youtube.com/watch?v=S6jQx4AJlFw
 
 https://habr.com/ru/articles/433878/
