@@ -1,17 +1,23 @@
-version: "3"
+# https://rabbitmq.com/configure.html#env-variable-interpolation
+
+# https://hub.docker.com/_/rabbitmq
+
+version: "3.5"
 
 services:
 
-    rabbit_mq:
-        container_name: 'rabbit_mq'
+    rabbit-mq:
+        container_name: ${RABBIT}
         image: rabbitmq:3-management-alpine
         restart: always
         ports:
-            - 5672:5672
-            - 15672:15672
+            - ${RABBIT_PORT_EXT}:${RABBIT_PORT}
+            - ${RABBIT_PORT_WEB_EXT}:${RABBIT_PORT_WEB}
         environment:
-            RABBITMQ_DEFAULT_USER: admin
-            RABBITMQ_DEFAULT_PASS: admin
-        # volumes:
-        # - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-        # - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+            DEFAULT_NODE_PORT: ${RABBIT_PORT}
+            RABBITMQ_DEFAULT_USER: ${RABBIT_USER}
+            RABBITMQ_DEFAULT_PASS: ${RABBIT_PWD}
+        volumes:
+        - ./data/:/var/lib/rabbitmq/
+        - ./log/:/var/log/rabbitmq/
+
