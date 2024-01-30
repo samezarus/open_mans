@@ -1,0 +1,3 @@
+https://github.com/mikolatero/docker-vlmcsd
+
+docker run -d -p 1688:1688 --restart=always --name vlmcsd mikolatero/vlmcsd
