@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: ${KC}
+    restart: always
+    ports:
+      - "${KC_PORT_EXT}:${KC_PORT}"
+    environment:
+      - TZ: ${TZ}
+      - KEYCLOAK_ADMIN: ${KC_ADMIN}
+      - KEYCLOAK_ADMIN_PASSWORD: ${KC_ADMIN_PWD}
+
+#networks:
+#  default:
+#    external: true
+#    name: '${NPM_LAN}'
