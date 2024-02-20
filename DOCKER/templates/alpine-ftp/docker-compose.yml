@@ -5,15 +5,27 @@ version: '3.5'
 
 services:
 
+  # folder
   alpine-ftp:
     container_name: ${AFS}
     image: delfer/alpine-ftp-server
     restart: always
     network_mode: host
-#    ports:
-#      - "21:21"
-#      - "21000-21010:21000-21010"
     environment:
       - USERS="admin|admin"
     volumes:
       - ./data:/ftp/admin
+
+  # file
+  # alpine-ftp:
+  #   container_name: ${AFS}
+  #   image: delfer/alpine-ftp-server
+  #   restart: always
+  #   network_mode: host
+  #   environment:
+  #     - USERS="admin|admin"
+  #   volumes:
+  #     - type: bind
+  #       source: /home/admin/temp/temp.txt
+  #       target: /ftp/admin/temp.txt
+  #       read_only: true
