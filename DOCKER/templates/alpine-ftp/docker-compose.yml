@@ -1,0 +1,19 @@
+ # https://hub.docker.com/r/delfer/alpine-ftp-server
+ # https://www.youtube.com/watch?v=PQlxngRyQQI
+
+version: '3.5'
+
+services:
+
+  alpine-ftp:
+    container_name: ${AFS}
+    image: delfer/alpine-ftp-server
+    restart: always
+    network_mode: host
+#    ports:
+#      - "21:21"
+#      - "21000-21010:21000-21010"
+    environment:
+      - USERS="admin|admin"
+    volumes:
+      - ./data:/ftp/admin
