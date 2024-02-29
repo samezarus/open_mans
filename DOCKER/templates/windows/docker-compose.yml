@@ -4,7 +4,9 @@ version: "3"
 services:
   windows:
     image: dockurr/windows
-    container_name: windows
+    container_name: windows-xp
+    environment:
+      VERSION: "winxp"
     devices:
       - /dev/kvm
     cap_add:
