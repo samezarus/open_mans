@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+
+  <name>:
+    container_name: '${NAME}'
+    image: '<image>'
+    restart: unless-stopped
+    ports:
+      - ${PORT_EXT}:${PORT}
+    environment:
+      TZ: '${TZ}'
+    volumes:
+      - ./:/home
+
+
+# networks:
+
+#   default:
+#     external: true
+#     name: '${NPM_LAN}' 
