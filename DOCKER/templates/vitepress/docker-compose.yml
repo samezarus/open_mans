@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+
+  vitepress:
+    container_name: '${NAME}'
+    build: . # билд Dockerfile -> vitepress_parent
+    image: vitepress_parent
+    restart: unless-stopped
+    ports:
+      - ${PORT_EXT}:${PORT}
+    environment:
+      TZ: '${TZ}'
+
+
+# networks:
+
+#   default:
+#     external: true
+#     name: '${NPM_LAN}' 
