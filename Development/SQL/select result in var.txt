@@ -1,0 +1,9 @@
+jsonb example:
+
+    WITH testa AS(
+    select jsonb_array_elements
+    (t.json -> 'matrix') -> 'offer_currencies' -> 0 as jsonbcolumn from test t)
+
+    SELECT d.key, d.value FROM testa
+        join  jsonb_each_text(testa.jsonbcolumn) d ON true
+    ORDER BY 1, 2;
