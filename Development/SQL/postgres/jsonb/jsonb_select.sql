@@ -42,6 +42,8 @@ select
 	* 
 from 
 	clients
+where
+	clients.clients_value -> 'val' = '0'
 
 
 
