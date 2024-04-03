@@ -10,7 +10,7 @@ with
 		select
 			tabs.tab_key,
 			tabs.tab_value,
-			key "block_name", 
+			key "block_key", 
 			value "block_value"
 		from 
 			tabs, jsonb_each(tab_value -> 'blocks')
@@ -19,7 +19,7 @@ with
 		select
 			tab_key,
 			tab_value,
-			block_name,
+			block_key,
 			block_value,
 			key "items_key",
 			value "items_value"
@@ -30,7 +30,7 @@ with
 		select
 			tab_key,
 			tab_value,
-			block_name,
+			block_key,
 			block_value,
 			items_value,
 			items_value,
