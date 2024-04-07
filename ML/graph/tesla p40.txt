@@ -3,3 +3,13 @@ How to Use Tesla P40:
 
   Enable Above 4G memory
   Disable CSM
+
+  Windows:
+    regedit
+    HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0001
+    Dword:
+      AdapterType -> 1
+      FeatureScore -> d1
+
+      EnableMsHybrid -> 1
+      GridLicensedFeatures -> 7
