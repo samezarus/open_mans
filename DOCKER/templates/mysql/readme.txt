@@ -21,8 +21,6 @@ Settings:
 
 Usage:
 
-    Copy "https://github.com/samezarus/open_mans/tree/ee159db0949ab0455fe694c93111378a476ae382/DOCKER/templates/mysql" to your folder.
-
     Up container:
 
         make up
