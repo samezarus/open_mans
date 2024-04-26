@@ -66,4 +66,4 @@ restore_arc:
 restore_arc_h: restart_h sleep restore_arc
 
 # soft restore from arc (with prebackup old base in arc)
-restore_s: backup_arc_ts restart_h sleep restore_arc
+restore_arc_s: backup_arc_ts restart_h sleep restore_arc
