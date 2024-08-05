@@ -1,0 +1,5 @@
+ /etc/docker/daemon.json
+
+ { "registry-mirrors" : [ "https://dockerhub.timeweb.cloud" ] }
+
+ systemctl reload docker
