@@ -1,0 +1,7 @@
+sudo apt install putty-tools -y
+
+.ppk -> .pem:
+    puttygen ppkkey.ppk -O private-openssh -o pemkey.pem
+
+.pem -> .ppk:
+    puttygen pemKey.pem -o ppkKey.ppk -O private
