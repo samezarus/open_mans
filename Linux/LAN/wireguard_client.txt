@@ -1,0 +1,16 @@
+https://developerinsider.co/how-to-set-up-wireguard-client-on-ubuntu/
+
+sudo apt update
+sudo apt install wireguard
+
+nmcli connection import type wireguard file <path/to/wireguard.conf>
+
+nmcli connection show
+
+nmcli connection up <wireguard-config-name>
+
+nmcli connection down HomeVPN
+
+nmcli connection modify <wireguard-config-name> autoconnect no|yes
+
+
