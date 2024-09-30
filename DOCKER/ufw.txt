@@ -59,7 +59,7 @@ https://selectel.ru/blog/tutorials/how-to-configure-firewall-with-ufw-on-ubuntu-
 
         sudo ufw enable
 
-Подключаем работу Docker с iptables:
+Отключаем работу Docker с iptables:
 
     /etc/docker/daemon.json
 
