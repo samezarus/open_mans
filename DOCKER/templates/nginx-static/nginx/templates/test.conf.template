@@ -1,0 +1,10 @@
+server {
+    listen ${NGINX_PORT_EXT};
+
+    access_log /var/log/nginx/${NGINX}-access.log;
+    error_log  /var/log/nginx/${NGINX}-error.log;
+
+    root ${NGINX_DESTINATION};
+
+    index index.html;
+}

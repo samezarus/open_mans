@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+
+  test-nginx:
+    container_name: ${NGINX}
+    ports:
+      - ${NGINX_PORT_EXT}:${NGINX_PORT}
+    image: "nginx:latest"
+    environment:
+      TZ: '${TZ}'
+    env_file:
+        - ./.env
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/templates:/etc/nginx/templates
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/cache:/var/cache/nginx
+      - ./nginx/www:/var/www
