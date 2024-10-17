@@ -1,0 +1,5 @@
+Найти все файлы:
+
+    clear && cd / && find -iname '*.pdf'
+
+    clear &&  cd / && find -iname 'database.sqlite'

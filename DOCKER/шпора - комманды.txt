@@ -26,6 +26,8 @@ https://webhamster.ru/mytetrashare/index/mtb339/1547023314t2f3a1tph0
 
 Удалить все неиспользуемые объекты Docker:
     docker system prune --volumes --all
+    docker builder prune --all
+    docker buildx prune --all
 
 -----------------------------------------------------------------------------------------------------------------
 Сети:
