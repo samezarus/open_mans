@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+
+  sentry-postgres:
+    container_name: ${DB}
+    image: postgres
+    environment:
+      TZ: ${TZ}
+      PGPORT: ${DB_PORT}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+     - ./postgre/data/db:/var/lib/postgresql/data
+
+  sentry-redis:
+    container_name: ${REDIS}
+    image: redis
+    # Имена сервисов, не "container_name"
+    depends_on:
+      - ${DB}
+    environment:
+      TZ: ${TZ}
+      # REDIS_PORT: ${REDIS_PORT}
+    command: --port ${REDIS_PORT}

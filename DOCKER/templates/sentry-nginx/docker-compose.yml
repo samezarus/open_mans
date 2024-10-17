@@ -1,0 +1,130 @@
+version: '3.8'
+
+services:
+
+  sentry-postgres:
+    container_name: ${DB}
+    image: postgres
+    environment:
+      TZ: ${TZ}
+      PGPORT: ${DB_PORT}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+     - ./postgre/data/db:/var/lib/postgresql/data
+
+  sentry-redis:
+    container_name: ${REDIS}
+    image: redis
+    # Имена сервисов, не "container_name"
+    depends_on:
+      - ${DB}
+    environment:
+      TZ: ${TZ}
+      # REDIS_PORT: ${REDIS_PORT}
+    command: --port ${REDIS_PORT}
+
+  sentry:
+    container_name: ${SENTRY}
+    image: sentry
+    restart: always
+    # Имена сервисов, не "container_name"
+    links:
+      - ${DB}
+      - ${REDIS}
+    # https://develop.sentry.dev/services/ports/
+    # ports:
+      # - ${SENTRY_PORT_EXT}:${SENTRY_PORT}
+    environment:
+      TZ: ${TZ}
+      # https://github.com/getsentry/sentry/blob/master/self-hosted/sentry.conf.py
+      # main
+      SENTRY_SECRET_KEY: ${SENTRY_SECRET_KEY}
+      #
+      # SENTRY_WEB_HOST: ${SENTRY_WEB_HOST}
+      SENTRY_WEB_PORT: ${SENTRY_PORT}
+      # db
+      SENTRY_POSTGRES_HOST: ${DB}
+      SENTRY_POSTGRES_PORT: ${DB_PORT}
+      SENTRY_DB_NAME: ${DB_NAME}
+      SENTRY_DB_USER: ${DB_USER}
+      SENTRY_DB_PASSWORD: ${DB_PASSWORD}
+      # redis
+      SENTRY_REDIS_HOST: ${REDIS}
+      SENTRY_REDIS_PORT: ${REDIS_PORT}
+    volumes:
+      - "./sentry/data:/data"
+      - "./sentry/sentry:/etc/sentry"
+
+  sentry-cron:
+    container_name: ${CRON}
+    image: sentry
+    # Имена сервисов, не "container_name"
+    links:
+      - ${DB}
+      - ${REDIS}
+      # - ${SENTRY}
+    command: "sentry run cron"
+    environment:
+      TZ: ${TZ}
+      # https://github.com/getsentry/sentry/blob/master/self-hosted/sentry.conf.py
+      # main
+      SENTRY_SECRET_KEY: ${SENTRY_SECRET_KEY}
+      # db
+      SENTRY_POSTGRES_HOST: ${DB}
+      SENTRY_POSTGRES_PORT: ${DB_PORT}
+      SENTRY_DB_NAME: ${DB_NAME}
+      SENTRY_DB_USER: ${DB_USER}
+      SENTRY_DB_PASSWORD: ${DB_PASSWORD}
+      # redis
+      SENTRY_REDIS_HOST: ${REDIS}
+      SENTRY_REDIS_PORT: ${REDIS_PORT}
+
+  sentry-worker:
+    container_name: ${WORKER}
+    image: sentry
+    # Имена сервисов, не "container_name"
+    links:
+      - ${DB}
+      - ${REDIS}
+      # - ${SENTRY}
+    command: "sentry run worker"
+    environment:
+      TZ: ${TZ}
+      # https://github.com/getsentry/sentry/blob/master/self-hosted/sentry.conf.py
+      # main
+      SENTRY_SECRET_KEY: ${SENTRY_SECRET_KEY}
+      # db
+      SENTRY_POSTGRES_HOST: ${DB}
+      SENTRY_POSTGRES_PORT: ${DB_PORT}
+      SENTRY_DB_NAME: ${DB_NAME}
+      SENTRY_DB_USER: ${DB_USER}
+      SENTRY_DB_PASSWORD: ${DB_PASSWORD}
+      # redis
+      SENTRY_REDIS_HOST: ${REDIS}
+      SENTRY_REDIS_PORT: ${REDIS_PORT} 
+
+  sentry-nginx:
+    container_name: ${NGINX}
+    ports:
+      - ${SENTRY_PORT_EXT}:${SENTRY_PORT}
+    image: "nginx:1.27.2"
+    environment:
+      TZ: '${TZ}'
+    env_file:
+        - ./.env
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/templates:/etc/nginx/templates
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/cache:/var/cache/nginx
+      - ./nginx/www:/var/www
+    depends_on:
+      - ${DB}
+      - ${REDIS}
+      - ${SENTRY}
+      - ${CRON}
+      - ${WORKER}
