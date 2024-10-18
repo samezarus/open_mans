@@ -1,0 +1,48 @@
+# https://docs.gitlab.com/ee/install/docker.html
+
+# root-password:
+# sudo docker exec -it gitlab-ce grep 'Password:' /etc/gitlab/initial_root_password    (deleted after 24 hours)
+
+version: '3.8'
+
+services:
+
+  gitlab:
+    container_name: ${GITLAB}
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    hostname: ${GITLAB_HOST}
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url '${GITLAB_URL}'
+        GITLAB_ROOT_PASSWORD=
+        gitlab_rails['gitlab_shell_ssh_port'] = 22
+    # ports:
+      # - ${GITLAB_PORT_EXT}:${GITLAB_PORT}
+      # - ${GITLAB_PORT_EXT_SSH}:22
+    volumes:
+      - './gitlab/config:/etc/gitlab'
+      - './gitlab/logs:/var/log/gitlab'
+      - './gitlab/data:/var/opt/gitlab'
+    shm_size: '256m'
+
+  gitlab-nginx:
+    container_name: ${NGINX}
+    ports:
+      - ${GITLAB_PORT_EXT}:${GITLAB_PORT}
+      - ${GITLAB_PORT_EXT_SSH}:22
+    image: "nginx:1.27.2"
+    environment:
+      TZ: '${TZ}'
+    env_file:
+        - ./.env
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/templates:/etc/nginx/templates
+      - ./nginx/ssl:/etc/nginx/ssl
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/cache:/var/cache/nginx
+      - ./nginx/www:/var/www
+    #depends_on:
+    #  - ${GITLAB}
