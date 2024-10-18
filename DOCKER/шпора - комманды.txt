@@ -1,8 +1,16 @@
 https://dker.ru/docs/docker-engine/engine-reference/command-line-reference/docker-commands/
 
+
+Манипуляции с демоном:
+
+    sudo systemctl status docker
+    sudo systemctl restart docker
+    sudo systemctl stop docker
+    sudo systemctl start docker
+
 -----------------------------------------------------------------------------------------------------------------
 
-Restart:
+Перезапуск контейнера:
     docker restart <имя контейнера>
     
 -----------------------------------------------------------------------------------------------------------------
