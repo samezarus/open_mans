@@ -1,0 +1,35 @@
+https://timeweb.cloud/tutorials/ci-cd/ustanovka-i-ispolzovanie-gitlab-runner
+
+--------------------------------------------------------------------------------------------
+
+Запуск:
+
+docker run -d \
+--name gitlab-runner \
+--restart always \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v gitlab-runner:/etc/gitlab-runner \
+gitlab/gitlab-runner:latest
+
+Регистрация:
+
+docker run --rm -it \
+-v gitlab-runner:/etc/gitlab-runner \
+gitlab/gitlab-runner:latest register
+
+--------------------------------------------------------------------------------------------
+
+failed to verify certificate: x509: certificate signed by unknown authority:
+
+https://forum.gitlab.com/t/gitlab-ci-cd-runner-registration-tls-failed-to-verify-certificate-x509-certificate-signed-by-unknown-authority/102007
+
+
+openssl s_client -showcerts -connect <git_url>:443 </dev/null 2>/dev/null|openssl x509 -outform PEM > gitlab.crt
+
+openssl x509 -in gitlab.crt -text -noout
+
+sudo mkdir -p /usr/local/share/ca-certificates/
+sudo cp gitlab.crt /usr/local/share/ca-certificates/
+sudo update-ca-certificates
+
+sudo gitlab-runner register
