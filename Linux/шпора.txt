@@ -3,3 +3,17 @@
     clear && cd / && find -iname '*.pdf'
 
     clear &&  cd / && find -iname 'database.sqlite'
+
+Архивация:
+
+    # В ахив    
+    tar -zcf <имя архива>.tar.gz <объект архивирования>
+
+    # Из архива 
+    tar -zxf <имя архива>.tar.gz --directory <каталг распаковки>
+
+SFTP:
+
+    sftp -o StrictHostKeyChecking=no -i "<путь к ssh-ключу>" <пользователь>@<сервер> <<EOF
+    put <файл для отправки на сервер> <каталог на сервере>
+    EOF
