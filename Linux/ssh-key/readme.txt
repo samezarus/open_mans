@@ -1,3 +1,26 @@
+Локально:
+
+    sudo apt install -y openssh-server
+
+    mkdir -p '/home/<user>/.ssh/server1'
+    ssh-keygen -b 4096 -a 10 -f '/home/<user>/.ssh/server1/id_rsa'
+    cat '/home/<user>/.ssh/server1/id_rsa.pub' | ssh <user>@<ip-сервера> 'cat >> /home/<user>/.ssh/authorized_keys'
+
+Сервер:
+
+    (sudo) /etc/ssh/sshd_config
+
+        PasswordAuthentication no
+
+    sudo systemctl restart sshd
+
+Подключение:
+
+    ssh -i '/home/<user>/.ssh/server1/id_rsa' <user>@<ip-сервера>
+
+--------------------------------------------------------------------------------------------------
+
+
 https://linuxhint.com/generate-ssh-key-ubuntu/
 
 Создание:
