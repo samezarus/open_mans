@@ -11,10 +11,14 @@ https://firstvds.ru/technology/kak-sozdat-klyuch-dlya-avtorizacii-po-ssh-i-dobav
 Сервер:
 
     (sudo) /etc/ssh/sshd_config
+    
+        AuthorizedKeysFile .ssh/authorized_keys
 
         PasswordAuthentication no
 
     Иногда может потребоваться отключение авторизации по паролю в файлах в каталоге:
+
+        PasswordAuthentication no
         
         /etc/ssh/sshd_config.d
 
