@@ -1,3 +1,5 @@
+https://firstvds.ru/technology/kak-sozdat-klyuch-dlya-avtorizacii-po-ssh-i-dobavit-ego-na-server
+
 Локально:
 
     sudo apt install -y openssh-server
@@ -11,6 +13,10 @@
     (sudo) /etc/ssh/sshd_config
 
         PasswordAuthentication no
+
+    Иногда может потребоваться отключение авторизации по паролю в файлах в каталоге:
+        
+        /etc/ssh/sshd_config.d
 
     sudo systemctl restart sshd
 
