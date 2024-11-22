@@ -11,7 +11,7 @@ https://firstvds.ru/technology/kak-sozdat-klyuch-dlya-avtorizacii-po-ssh-i-dobav
 Сервер:
 
     (sudo) /etc/ssh/sshd_config
-    
+
         AuthorizedKeysFile .ssh/authorized_keys
 
         PasswordAuthentication no
