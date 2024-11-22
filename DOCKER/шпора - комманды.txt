@@ -22,6 +22,10 @@ https://dker.ru/docs/docker-engine/engine-reference/command-line-reference/docke
 Перезапуск:
     
     docker restart <имя контейнера>
+
+IP-адрес:
+
+    docker inspect <контейнер> | grep IPAddress
     
 -----------------------------------------------------------------------------------------------------------------
 
