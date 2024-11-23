@@ -22,7 +22,7 @@ https://firstvds.ru/technology/kak-sozdat-klyuch-dlya-avtorizacii-po-ssh-i-dobav
     sudo apt install -y openssh-server
 
     (sudo) /etc/ssh/sshd_config
-    
+
         AuthorizedKeysFile .ssh/authorized_keys
 
         PasswordAuthentication no
