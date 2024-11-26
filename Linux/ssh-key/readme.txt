@@ -2,19 +2,34 @@ https://firstvds.ru/technology/kak-sozdat-klyuch-dlya-avtorizacii-po-ssh-i-dobav
 
 Локально:
 
-    sudo apt install -y openssh-server
+    # Создаём каталог куда положим публичный и приватный ключ
+    mkdir -p '/home/<user_local>/.ssh/server1'
 
-    mkdir -p '/home/<user>/.ssh/server1'
+    # Генерируем ключи
     ssh-keygen -b 4096 -a 10 -f '/home/<user>/.ssh/server1/id_rsa'
-    cat '/home/<user>/.ssh/server1/id_rsa.pub' | ssh <user>@<ip-сервера> 'cat >> /home/<user>/.ssh/authorized_keys'
+    
+    # Отправляем публичный ключ на сервер
+
+    ssh-copy-id -i '/home/<user_local>/.ssh/server1/id_rsa.pub' <user_server>@<ip-сервера>
+
+    или
+
+    cat '/home/<user_local>/.ssh/server1/id_rsa.pub' | ssh <user_server>@<ip-сервера> 'cat >> /home/<user_server>/.ssh/authorized_keys'
 
 Сервер:
+
+    # Если нужно ставим пакеты
+    sudo apt install -y openssh-server
 
     (sudo) /etc/ssh/sshd_config
 
         AuthorizedKeysFile .ssh/authorized_keys
 
         PasswordAuthentication no
+
+        UsePAM no
+
+        PermitRootLogin no
 
     Иногда может потребоваться отключение авторизации по паролю в файлах в каталоге:
 
@@ -24,9 +39,18 @@ https://firstvds.ru/technology/kak-sozdat-klyuch-dlya-avtorizacii-po-ssh-i-dobav
 
     sudo systemctl restart sshd
 
-Подключение:
+Подключение (с приватным ключём):
 
-    ssh -i '/home/<user>/.ssh/server1/id_rsa' <user>@<ip-сервера>
+    ssh -i '/home/<user_local>/.ssh/server1/id_rsa' <user_server>@<ip-сервера>
+
+    или 
+    
+    Добавить приватный ключ в ssh-агент (что бы не вводить pass-фразу и путь к ключу)
+    (Агент помнит ключи только в контексте сессии, если перезагрузиться, то добавлять заново)
+
+        ssh-add '/home/<user_local>/.ssh/server1/id_rsa'
+
+        ssh <user_server>@<ip-сервера>
 
 --------------------------------------------------------------------------------------------------
 
