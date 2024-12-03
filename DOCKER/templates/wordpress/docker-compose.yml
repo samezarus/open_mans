@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+
+  wordpress:
+    image: wordpress
+    restart: always
+    #ports:
+    #  - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: wordpress-db
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: <password>
+    volumes:
+      - wordpress:/var/www/html
+
+  wordpress-db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: <password>
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - wordpress-db:/var/lib/mysql
+
+volumes:
+  wordpress:
+  wordpress-db:
+
+networks:
+  default:
+    external: true
+    name: nginx-ext
