@@ -1,0 +1,49 @@
+https://selectel.ru/blog/tutorials/how-to-configure-firewall-with-ufw-on-ubuntu-20/
+
+install:
+
+    sudo apt-get install ufw
+
+Статус:
+
+    sudo ufw status verbose
+
+Начальная настройка:
+
+    sudo ufw default deny incoming
+    sudo ufw default allow outgoing
+
+Добавить разрешения минимальные:
+
+    sudo ufw allow ssh
+    sudo ufw allow 80
+    sudo ufw allow 443
+
+Старт:
+
+    sudo ufw enable
+
+Добавление диапазонов портов:
+
+    sudo ufw allow <старт диапазона>:<конец диапазона>
+
+Добавление диапазонов портов с протоколами:
+
+    sudo ufw allow <старт диапазона>:<конец диапазона>/tcp
+    sudo ufw allow <старт диапазона>:<конец диапазона>/udp
+
+Все разрешения для IP:
+
+    sudo ufw allow from xxx.xxx.xxx.xxx
+
+Разрешение IP к порту:
+
+    sudo ufw allow from xxx.xxx.xxx.xxx to any port <номер порта>
+
+Все разрешения для подсети
+
+    sudo ufw allow from xxx.xxx.xxx.xxx/24
+
+Разрешение подсети к порту:
+
+    sudo ufw allow from xxx.xxx.xxx.xxx/24 to any port <номер порта>
