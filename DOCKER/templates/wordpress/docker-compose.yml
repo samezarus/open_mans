@@ -3,10 +3,9 @@ version: '3.9'
 services:
 
   wordpress:
+    container_name: wordpress
     image: wordpress
     restart: always
-    #ports:
-    #  - 8080:80
     environment:
       WORDPRESS_DB_HOST: wordpress-db
       WORDPRESS_DB_NAME: wordpress
@@ -16,13 +15,14 @@ services:
       - wordpress:/var/www/html
 
   wordpress-db:
+    container_name: wordpress-db
     image: mysql:8.0
     restart: always
     environment:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: <password>
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      MYSQL_ROOT_PASSWORD: <password>
     volumes:
       - wordpress-db:/var/lib/mysql
 

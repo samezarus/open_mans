@@ -1,0 +1,12 @@
+server {
+    listen 8080;
+
+    access_log /var/log/nginx/nginx-exporter-access.log;
+    error_log  /var/log/nginx/nginx-exporter-error.log;
+
+    server_name _;
+
+    location /stub_status {
+        stub_status;
+    }
+}

@@ -1,0 +1,32 @@
+# job_name - имя джобы в prometheus.yml
+
+groups:
+- name: "<job_name>"
+  rules:
+
+  # Нагрузка на процессор ( > 0.7 * cpu_count)
+  - alert: "Нагрузка на процессор"
+    expr: node_load1 > 2.8
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: "Нагрузка на процессор больше 70%"
+
+  # Использование RAM памяти
+  - alert: "Использование RAM памяти"
+    expr: (node_memory_MemAvailable_bytes - node_memory_Buffers_bytes - node_memory_Cached_bytes) < 500000000
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: "RAM памяти меньше 500 МБ"
+
+  # Использование диска
+  - alert: "Использование диска"
+    expr: (100.0 - 100 * (node_filesystem_avail / node_filesystem_size)) > 80
+    for: 10m
+    labels:
+      severity: page
+    annotations:
+      summary: "Диск заполнен более чем на 80%"

@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+
+  mysql-exporter:
+    # port 9104
+    container_name: mysql-exporter
+    image: prom/mysqld-exporter:latest 
+    restart: unless-stopped
+    volumes:
+      - "./.my.cnf:/cfg/.my.cnf"
+    command:
+      - "--mysqld.address=<сервер/контейнер БД>:<порт>"
+      - "--collect.engine_innodb_status"
+      - "--collect.info_schema.processlist"
+      - "--collect.info_schema.innodb_metrics"
+      - "--collect.info_schema.tablestats"
+      - "--collect.info_schema.tables"
+      - "--collect.info_schema.userstats"
+      
+networks:
+  default:
+    external: true
+    name: ext-lan

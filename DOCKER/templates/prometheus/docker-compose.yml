@@ -1,18 +1,25 @@
 version: '3.9'
 
 services:
+
   prometheus:
+    # port 9090
     container_name: 'prometheus'
-    # build: ./
-    # image: 'prometheus-img'
-    image: prom/prometheus
+    image: prom/prometheus:latest
     restart: unless-stopped
     ports:
       - 9090:9090
+    environment:
+      TZ: "Asia/Vladivostok"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alert.rules:/etc/prometheus/alert.rules
       - prometheus:/prometheus
-    # command: bash -c '/bin/prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus'
 
 volumes:
   prometheus:
+
+networks:
+  default:
+    external: true
+    name: ext-lan

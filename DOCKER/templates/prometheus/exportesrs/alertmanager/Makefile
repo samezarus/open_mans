@@ -10,7 +10,7 @@ rebuild:
 	docker compose build --no-cache
 
 logs:
-	docker logs -f prometheus
+	docker logs -f node-exporter
 
 console:
-	docker exec -it prometheus /bin/sh
+	docker exec -it node-exporter /bin/sh
