@@ -6,16 +6,6 @@ route:
 
 receivers:
   - name: 'sb-test'
-    webhook_configs:
-      - send_resolved: false
-        url: 'http://localhost:666'
-
-
-# route:
-#     receiver: 'alertmanager-test'
-
-# receivers:
-# - name: 'alertmanager-test'
-#   webhook_configs:
-#   - send_resolved: true
-#     url: 'http://localhost:8080'
+    # webhook_configs:
+    #   - send_resolved: false
+    #     url: 'http://localhost:666'

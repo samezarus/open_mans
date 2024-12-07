@@ -15,17 +15,17 @@ groups:
 
   # Использование RAM памяти
   - alert: "Использование RAM памяти"
-    expr: (node_memory_MemAvailable_bytes - node_memory_Buffers_bytes - node_memory_Cached_bytes) < 500000000
+    expr: ((node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100) > 75
     for: 1m
     labels:
       severity: page
     annotations:
-      summary: "RAM памяти меньше 500 МБ"
+      summary: "RAM память использована более чем на 75%"
 
   # Использование диска
   - alert: "Использование диска"
-    expr: (100.0 - 100 * (node_filesystem_avail / node_filesystem_size)) > 80
-    for: 10m
+    expr: (100-(100*((node_filesystem_avail_bytes{mountpoint="/",fstype!="rootfs"})/(node_filesystem_size_bytes{mountpoint="/",fstype!="rootfs"})))) > 80
+    for: 1m
     labels:
       severity: page
     annotations:
