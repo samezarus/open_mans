@@ -1,11 +1,31 @@
+# https://prometheus.io/docs/alerting/latest/configuration/#webhook_config
+# https://prometheus.io/docs/alerting/latest/configuration/#email_config
+
+
+global:
+  resolve_timeout: 1m
+
 route:
   receiver: 'sb-test'
   repeat_interval: 5m
   group_interval: 5m
   
-
+# web hook
 receivers:
   - name: 'sb-test'
     # webhook_configs:
     #   - send_resolved: false
     #     url: 'http://localhost:666'
+
+# email
+# receivers:
+# - name: 'sb-test'
+#   email_configs:
+#   - to: 'sameza@mail.ru'
+#     from: 'sameza@mail.ru'
+#     smarthost: 'smtp.mail.ru:587'
+#     auth_username: 'sameza@mail.ru'
+#     auth_identity: 'sameza@mail.ru'
+#     auth_password: '<пароль для внешних приложений>'
+
+
