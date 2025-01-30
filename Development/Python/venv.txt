@@ -1,6 +1,7 @@
 Установка:
 
-    sudo apt install -y python3-pip python3.10-venv && pip install virtualenv
+    sudo apt install -y python3-pip python3.12-venv
+    pip install --break-system-packages virtualenv
     
     # sudo apt install python3-pip -y
     # sudo apt install python3.10-venv -y
