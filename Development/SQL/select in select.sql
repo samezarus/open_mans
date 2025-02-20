@@ -33,3 +33,15 @@ where
 dups.Row > 1
 
 =================================================================================================================================================================
+
+WITH it_employees AS (
+    SELECT id, name, department, salary
+    FROM employees
+    WHERE department = 'IT'
+)
+SELECT name, department, salary
+FROM it_employees
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employees
+);
