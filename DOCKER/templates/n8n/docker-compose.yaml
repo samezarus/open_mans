@@ -7,12 +7,16 @@ services:
     image: 'docker.n8n.io/n8nio/n8n'
     restart: always
     ports:
-      - '5678:5678'
+      - '127.0.0.1:5678:5678'
     volumes:
       - n8n_data:/home/node/.n8n
     environment:
-      # If you prefer to disable this security feature (not recommended) (без SSL)
-      - N8N_SECURE_COOKIE=false
+      # If you prefer to disable this security feature (not recommended)
+      # - N8N_SECURE_COOKIE=false
+      - N8N_HOST=n8n.blabla.ru
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - WEBHOOK_URL=https://n8n.blabla.ru/
 
 volumes:
   n8n_data:
