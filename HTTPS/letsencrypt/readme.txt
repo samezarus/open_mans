@@ -9,7 +9,7 @@ https://serverspace.ru/support/help/lets-encrypt-ubuntu-20-04/?utm_source=google
 
 Установка пакета:
 
-    sudo apt install -y letsencrypt
+    sudo apt install -y letsencrypt python3-certbot-nginx
 
 Проверка, что таймер обновления сертов работает:
 
@@ -23,6 +23,10 @@ https://serverspace.ru/support/help/lets-encrypt-ubuntu-20-04/?utm_source=google
         standalone                - запуск собственного web-сервер для аутентификации
         agree-tos                 - принятие ACME соглашения о подписке на сервер
         preferred-challenges http - выполнение авторизации с использованием HTTP
+
+    Если нужен серт на поддомен:
+
+        certbot --nginx -d blabla.ru -d api.blabla.ru
 
 Использование в Nginx (хост):
 
