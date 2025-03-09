@@ -1,0 +1,30 @@
+Создать файл сервиса:
+
+    sudo nano /etc/systemd/system/my-demon.service
+
+Создать тело сервиса:
+
+    [Unit]
+    Description=Super demon
+    After=network.target
+
+    [Service]
+    User=root
+    WorkingDirectory=/home/user1/script/  # Путь к директории с скриптом
+    ExecStart=/home/user1/script/script.sh  # Полный путь к Python и скрипту
+    Restart=always  # Перезапускать при падении
+
+    [Install]
+    WantedBy=multi-user.target
+
+Применить изменения:
+
+    sudo systemctl daemon-reload
+
+Автозапуск:
+
+    sudo systemctl enable my-demon.service
+
+Запуск:
+
+    sudo systemctl start my-demon.service
