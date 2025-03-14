@@ -6,8 +6,8 @@
 
     sudo visudo
 
-    $USER ALL=(ALL) NOPASSWD: /sbin/apt update
+    <USER> ALL=(ALL) NOPASSWD: /sbin/apt update
 
     Проверка конфигурации пользовотеля:
 
-        sudo -l -U $USER
+        sudo -l -U <USER>
