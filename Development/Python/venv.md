@@ -21,6 +21,13 @@ python -m venv .venv && source .venv/bin/activate
 virtualenv -p /usr/bin/python3.11 venv
 ```
 
+# Активация
+
+``` bash
+source .venv/bin/activate
+```
+
+
 # Деактивация:
 
 ``` bash
