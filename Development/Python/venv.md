@@ -5,26 +5,20 @@ sudo apt install -y python3-pip python3.12-venv
 pip install --break-system-packages virtualenv
 ```
     
-# Создание для проекта:
+# Создание и активация:
 
 ``` bash
-python3 -m venv .venv 
+python3 -m venv .venv && source .venv/bin/activate
 ```
 
 ``` bash
-python -m venv .venv
+python -m venv .venv && source .venv/bin/activate
 ```
 
 # Создание с версией python:
 
 ``` bash
 virtualenv -p /usr/bin/python3.11 venv
-```
-
-# Активация:
-
-``` bash
-source .venv/bin/activate
 ```
 
 # Деактивация:
