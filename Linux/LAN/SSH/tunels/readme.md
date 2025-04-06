@@ -5,7 +5,7 @@
 
 ### В фоновом режиме
 
-```
+``` bash
 ssh -L 8080:localhost:80 -N -f user@remote_host
 ```
 
