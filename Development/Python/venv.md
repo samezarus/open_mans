@@ -18,7 +18,7 @@ python -m venv .venv && source .venv/bin/activate
 # Создание с версией python:
 
 ``` bash
-virtualenv -p /usr/bin/python3.11 venv
+virtualenv -p /usr/bin/python3.11 .venv
 ```
 
 # Активация
