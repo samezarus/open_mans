@@ -9,7 +9,7 @@ services:
         restart: always
         # Порты стоит скрыть что бы не светить их во вне.
         ports:
-            - '${DB_EXT_PORT}:{DB_PORT}'
+            - '${DB_EXT_PORT}:${DB_PORT}'
         environment:
             TZ: '${TZ}'
             PGPORT: '${DB_PORT}'
