@@ -1,10 +1,10 @@
 include ./.env
 
 up:
-	docker-compose up -d
+	${DOCKER_COMPOSE} up -d
 
 down:
-	docker-compose down -v
+	${DOCKER_COMPOSE} down -v
 
 restart: down up
 
@@ -14,5 +14,5 @@ console:
 logs:
 	docker logs ${RABBIT} -f
 
-django_stats:
+stats:
 	docker stats ${RABBIT}
