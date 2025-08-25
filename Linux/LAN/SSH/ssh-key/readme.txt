@@ -41,6 +41,8 @@ https://firstvds.ru/technology/kak-sozdat-klyuch-dlya-avtorizacii-po-ssh-i-dobav
 
 Подключение (с приватным ключём):
 
+    chmod 600 ./id_rsa
+
     ssh -i '/home/<user_local>/.ssh/server1/id_rsa' <user_server>@<ip-сервера>
 
     или 
