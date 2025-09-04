@@ -1,5 +1,14 @@
 # Установка локального Nginx
 
+## Команды
+
+| Команда | Описание |
+| - | - |
+| Состояние сервиса| systemctl stus nginx |
+| Полный перезапуск| systemctl restart nginx |
+| Мягкий перезапуск| systemctl reload nginx |
+| Проверка конфигурации | nginx -t |
+
 ## Установка Nginx
 
 - Каталог с конфигами: /etc/nginx/conf.d/
