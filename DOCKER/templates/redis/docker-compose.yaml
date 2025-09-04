@@ -1,0 +1,27 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT}:6379"
+    environment:
+      - REDIS_USER=${REDIS_USER}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_DEFAULT_USER_PASSWORD=${REDIS_PASSWORD}
+    volumes:
+      - redis_data:/data
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+
+  redis-web:
+    image: redislabs/redisinsight:latest
+    container_name: redis-web
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT_WEB}:8001"
+    volumes:
+      - redis_insight_data:/db
+
+volumes:
+  redis_data:
+  redis_insight_data:
