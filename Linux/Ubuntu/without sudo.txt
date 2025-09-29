@@ -1,13 +1,1 @@
-Позволить пользовотелю все действия из под sudo без пароля:
-
-    echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER
-
-Позволить пользовотелю запуск чего-то конкретного из под sudo без пароля:
-
-    sudo visudo
-
-    <USER> ALL=(ALL) NOPASSWD: /sbin/apt update
-
-    Проверка конфигурации пользовотеля:
-
-        sudo -l -U <USER>
+echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/$USER
