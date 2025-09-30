@@ -1,8 +1,12 @@
+# Добавление хостового диска в VM
+
 https://www.virtualizationhowto.com/2023/04/proxmox-add-disk-storage-space-nvme-drive/
 
-к примеру диск = "sda"
+```
+К примеру диск = "sda"
 новый лабел = "wd-hdd-500"
 папка для монтирования = "wd-hdd-500"
+```
 
 Установить:
     apt install parted
