@@ -82,4 +82,4 @@ https://linuxhint.com/generate-ssh-key-ubuntu/
 
 Удаление пароля из ключа:
 
-    ssh-keygen -p
+    ssh-keygen -p -f <путь_к_ключу> -N ""
