@@ -1,4 +1,4 @@
-OUTPUT_PATH=~./self_ssl
+OUTPUT_PATH=.self_ssl
 KEY_FILE=cert.key
 CRT_FILE=cert.crt
 DAYS=99999

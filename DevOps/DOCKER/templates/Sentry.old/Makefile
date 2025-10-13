@@ -13,7 +13,7 @@ key:
 	docker run --rm sentry config generate-secret-key
 
 # Инициализация, один раз после установки
-init:
+init_:
 	docker run -it --rm \
 	-e TZ=${TZ} \
 	-e SENTRY_SECRET_KEY=${SENTRY_SECRET_KEY} \
@@ -27,3 +27,6 @@ init:
 	--link ${REDIS}:${REDIS} \
 	--network ${NPM_LAN} \
 	sentry upgrade
+
+init: 
+	docker

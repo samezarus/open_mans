@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+
+  sentry-db:
+    container_name: ${DB}
+    image: postgres
+    environment:
+      TZ: ${TZ}
+      # PGPORT: ${DB_PORT}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+     - ./db:/var/lib/postgresql/data
+
+  sentry-redis:
+    container_name: ${REDIS}
+    image: redis
+    # Имена сервисов, не "container_name"
+    depends_on:
+      - ${DB}
+    environment:
+      TZ: ${TZ}
+      # REDIS_PORT: ${REDIS_PORT}
+    command: --port ${REDIS_PORT}
+
+  sentry-init:
+    container_name: ${SENTRY}
+    image: sentry
+    restart: always
+    # Имена сервисов, не "container_name"
+    links:
+      - ${DB}
+      - ${REDIS}
+    # https://develop.sentry.dev/services/ports/
+    ports:
+      - ${SENTRY_PORT_EXT}:${SENTRY_PORT}
+    environment:
+      TZ: ${TZ}
+      # https://github.com/getsentry/sentry/blob/master/self-hosted/sentry.conf.py
+      # main
+      SENTRY_SECRET_KEY: ${SENTRY_SECRET_KEY}
+      #
+      # SENTRY_WEB_HOST: ${SENTRY_WEB_HOST}
+      SENTRY_WEB_PORT: ${SENTRY_PORT}
+      # db
+      SENTRY_POSTGRES_HOST: ${DB}
+      # SENTRY_POSTGRES_PORT: ${DB_PORT}
+      SENTRY_DB_NAME: ${DB_NAME}
+      SENTRY_DB_USER: ${DB_USER}
+      SENTRY_DB_PASSWORD: ${DB_PASSWORD}
+      # redis
+      SENTRY_REDIS_HOST: ${REDIS}
+      # SENTRY_REDIS_PORT: ${REDIS_PORT}
+    command: upgrade

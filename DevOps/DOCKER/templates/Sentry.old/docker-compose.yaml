@@ -8,19 +8,19 @@ services:
     environment:
       TZ: ${TZ}
       # REDIS_PORT: ${REDIS_PORT}
-    command: --port ${REDIS_PORT}
+    # command: --port ${REDIS_PORT}
 
-  sentry-postgres:
+  sentry-db:
     container_name: ${DB}
     image: postgres
     environment:
       TZ: ${TZ}
-      PGPORT: ${DB_PORT}
+      # PGPORT: ${DB_PORT}
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
-     - ./data/db:/var/lib/postgresql/data
+     - ./db:/var/lib/postgresql/data
 
   sentry:
     container_name: ${SENTRY}
@@ -43,13 +43,13 @@ services:
       SENTRY_WEB_PORT: ${SENTRY_PORT}
       # db
       SENTRY_POSTGRES_HOST: ${DB}
-      SENTRY_POSTGRES_PORT: ${DB_PORT}
+      # SENTRY_POSTGRES_PORT: ${DB_PORT}
       SENTRY_DB_NAME: ${DB_NAME}
       SENTRY_DB_USER: ${DB_USER}
       SENTRY_DB_PASSWORD: ${DB_PASSWORD}
       # redis
       SENTRY_REDIS_HOST: ${REDIS}
-      SENTRY_REDIS_PORT: ${REDIS_PORT}
+      # SENTRY_REDIS_PORT: ${REDIS_PORT}
 
   sentry-cron:
     container_name: ${CRON}
@@ -66,13 +66,13 @@ services:
       SENTRY_SECRET_KEY: ${SENTRY_SECRET_KEY}
       # db
       SENTRY_POSTGRES_HOST: ${DB}
-      SENTRY_POSTGRES_PORT: ${DB_PORT}
+      # SENTRY_POSTGRES_PORT: ${DB_PORT}
       SENTRY_DB_NAME: ${DB_NAME}
       SENTRY_DB_USER: ${DB_USER}
       SENTRY_DB_PASSWORD: ${DB_PASSWORD}
       # redis
       SENTRY_REDIS_HOST: ${REDIS}
-      SENTRY_REDIS_PORT: ${REDIS_PORT}
+      # SENTRY_REDIS_PORT: ${REDIS_PORT}
 
   sentry-worker:
     container_name: ${WORKER}
@@ -89,15 +89,10 @@ services:
       SENTRY_SECRET_KEY: ${SENTRY_SECRET_KEY}
       # db
       SENTRY_POSTGRES_HOST: ${DB}
-      SENTRY_POSTGRES_PORT: ${DB_PORT}
+      # SENTRY_POSTGRES_PORT: ${DB_PORT}
       SENTRY_DB_NAME: ${DB_NAME}
       SENTRY_DB_USER: ${DB_USER}
       SENTRY_DB_PASSWORD: ${DB_PASSWORD}
       # redis
       SENTRY_REDIS_HOST: ${REDIS}
-      SENTRY_REDIS_PORT: ${REDIS_PORT}
-
-networks:
-  default:
-    external: true
-    name: '${NPM_LAN}'
+      # SENTRY_REDIS_PORT: ${REDIS_PORT}
