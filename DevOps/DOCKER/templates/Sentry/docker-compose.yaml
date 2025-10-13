@@ -33,7 +33,7 @@ services:
       - ${REDIS}
     # https://develop.sentry.dev/services/ports/
     ports:
-      - 0.0.0.0:${SENTRY_PORT}:9000
+      - ${SENTRY_WEB_HOST}:${SENTRY_PORT}:9000
     environment:
       TZ: ${TZ}
       # https://github.com/getsentry/sentry/blob/master/self-hosted/sentry.conf.py
