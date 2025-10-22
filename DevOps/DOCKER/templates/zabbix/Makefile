@@ -1,5 +1,13 @@
+include ./.env
+
 up:
-	docker-compose up -d
+	${DOCKER_COMPOSE} up -d
 
 down:
-	docker-compose down -v
+	${DOCKER_COMPOSE} down
+
+down_hard:
+	${DOCKER_COMPOSE} down -v
+
+restart:
+	${DOCKER_COMPOSE} restart

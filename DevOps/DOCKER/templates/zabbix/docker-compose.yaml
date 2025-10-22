@@ -1,0 +1,61 @@
+services:
+  zabbix-db:
+    image: postgres:15
+    container_name: ${ZABBIX}-db
+    environment:
+      - POSTGRES_DB=${ZABBIX_DB}
+      - POSTGRES_USER=${ZABBIX_DB_USER}
+      - POSTGRES_PASSWORD=${ZABBIX_DB_PASSWORD}
+    volumes:
+      - ./zbx_env/pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  zabbix:
+    image: zabbix/zabbix-server-pgsql:alpine-latest
+    container_name: ${ZABBIX}
+    environment:
+      - DB_SERVER_HOST=${ZABBIX}-db
+      - POSTGRES_USER=${ZABBIX_DB_USER}
+      - POSTGRES_PASSWORD=${ZABBIX_DB_PASSWORD}
+    depends_on:
+      - ${ZABBIX}-db
+    ports:
+      - "127.0.0.1:${ZABBIX_PORT}:10051"
+    volumes:
+      - ./zbx_env/alertscripts:/usr/lib/zabbix/alertscripts
+      - ./zbx_env/externalscripts:/usr/lib/zabbix/externalscripts
+    restart: unless-stopped
+
+  zabbix-web:
+    image: zabbix/zabbix-web-nginx-pgsql:alpine-latest
+    container_name: ${ZABBIX}-web
+    environment:
+      - DB_SERVER_HOST=${ZABBIX}-db
+      - POSTGRES_USER=${ZABBIX_DB_USER}
+      - POSTGRES_PASSWORD=${ZABBIX_DB_PASSWORD}
+      - ZBX_SERVER_HOST=${ZABBIX}
+      - PHP_TZ=${TZ}
+    depends_on:
+      - ${ZABBIX}-db
+      - ${ZABBIX}
+    # volumes:
+      # Монтируем сертификаты
+      # - ./certs/fullchain.pem:/etc/ssl/certs/nginx.crt:ro
+      # - ./certs/privkey.pem:/etc/ssl/private/nginx.key:ro
+      # Можно монтировать свой nginx.conf, если нужно
+      # - ./nginx.conf:/etc/ssl/nginx.conf:ro
+    ports:
+      - "127.0.0.1:${ZABBIX_WEB_PORT}:8080"
+      # - "8443:8443"
+    restart: unless-stopped
+
+  zabbix-agent:
+    image: zabbix/zabbix-agent:alpine-latest
+    container_name: ${ZABBIX}-agent
+    environment:
+      - ZBX_SERVER_HOST=${ZABBIX}
+      - ZBX_HOSTNAME=Zabbix-server
+    depends_on:
+      - ${ZABBIX}-db
+      - ${ZABBIX}
+    restart: unless-stopped
