@@ -1,0 +1,7 @@
+DOCKER_COMPOSE=docker compose
+
+N8N=n8n
+N8N_HOST=n8n.blabla.ru
+N8N_PORT=5678
+N8N_PROTOCOL=https
+WEBHOOK_URL=${N8N_PROTOCOL}://${N8N_HOST}

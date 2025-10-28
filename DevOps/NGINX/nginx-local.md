@@ -79,7 +79,7 @@ sudo certbot certonly --standalone --agree-tos --preferred-challenges http -d bl
 ### Добавление поддоменых сертификатов в доменный
 
 ``` bash
-certbot --nginx -d blabla.ru -d api.blabla.ru -d docs.blabla.ru
+certbot -d blabla.ru -d api.blabla.ru -d docs.blabla.ru
 ```
 
 ### Расположение сертификатов (симлинки) для Nginx
