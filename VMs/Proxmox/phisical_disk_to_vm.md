@@ -15,7 +15,7 @@
 ## Кстановить зависимости
     
 ``` bash
-sudp apt install -y lshw parted lsblk
+sudo apt install -y lshw parted lsblk
 ```
    
 ## Шаги (Proxmox host)
