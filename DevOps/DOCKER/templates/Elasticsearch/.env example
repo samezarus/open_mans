@@ -1,0 +1,8 @@
+ES=elasticsearch
+ES_PORT=9200
+ES_PASSWORD=elasticsearch
+
+# dev
+ES_SECURITY=false
+# prod
+#ES_SECURITY=true

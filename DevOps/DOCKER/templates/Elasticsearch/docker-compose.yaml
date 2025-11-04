@@ -1,0 +1,19 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    container_name: ${ES}
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      - xpack.security.enabled=${ES_SECURITY}
+      - ELASTIC_PASSWORD=${ES_PASSWORD}
+    ports:
+      # dev
+      ${ES_PORT}:9200
+      # prod
+      #- 127.0.0.1:${ES_PORT}:9200
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+
+volumes:
+  elasticsearch_data:
