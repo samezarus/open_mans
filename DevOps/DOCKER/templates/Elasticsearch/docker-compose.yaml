@@ -1,6 +1,7 @@
 services:
+
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    image: elasticsearch:9.2.0
     container_name: ${ES}
     environment:
       - discovery.type=single-node
@@ -14,6 +15,11 @@ services:
       #- 127.0.0.1:${ES_PORT}:9200
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2g
 
 volumes:
   elasticsearch_data:
