@@ -1,3 +1,5 @@
+DOCKER_COMPOSE=docker compose
+
 ES=elasticsearch
 ES_PORT=9200
 ES_PASSWORD=elasticsearch
