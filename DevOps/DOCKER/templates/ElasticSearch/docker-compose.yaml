@@ -1,16 +1,19 @@
 services:
 
   elasticsearch:
-    image: elasticsearch:9.2.0
+    image: elasticsearch:8.19.5
     container_name: ${ES}
     environment:
-      - discovery.type=single-node
-      - ES_JAVA_OPTS=-Xms1g -Xmx1g
-      - xpack.security.enabled=${ES_SECURITY}
       - ELASTIC_PASSWORD=${ES_PASSWORD}
+      - ES_JAVA_OPTS=-Xms256m -Xmx256m
+      - discovery.type=single-node
+      - xpack.security.enabled=${ES_SECURITY}
+      - network.host=0.0.0.0
+      - http.cors.enabled=true
+      - http.cors.allow-origin='*'
     ports:
       # dev
-      ${ES_PORT}:9200
+      - ${ES_PORT}:9200
       # prod
       #- 127.0.0.1:${ES_PORT}:9200
     volumes:
@@ -18,8 +21,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 2g
+          cpus: '0.5'
+          memory: 1g
 
 volumes:
   elasticsearch_data:
