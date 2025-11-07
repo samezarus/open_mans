@@ -1,10 +1,15 @@
 DOCKER_COMPOSE=docker compose
 
 ES=elasticsearch
+ES_IP=0.0.0.0
 ES_PORT=9200
 ES_PASSWORD=elasticsearch
-
-# dev
+ES_CLUSTER_NAME=my_cluster
+#   dev
 ES_SECURITY=false
-# prod
+#   prod
 #ES_SECURITY=true
+
+ES_UI=elasticsearch-ui
+ES_UI_IP=0.0.0.0
+ES_UI_PORT=19200

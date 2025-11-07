@@ -5,24 +5,30 @@ services:
     container_name: ${ES}
     environment:
       - ELASTIC_PASSWORD=${ES_PASSWORD}
-      - ES_JAVA_OPTS=-Xms256m -Xmx256m
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - cluster.name=${ES_CLUSTER_NAME}
       - discovery.type=single-node
       - xpack.security.enabled=${ES_SECURITY}
       - network.host=0.0.0.0
       - http.cors.enabled=true
       - http.cors.allow-origin='*'
     ports:
-      # dev
-      - ${ES_PORT}:9200
-      # prod
-      #- 127.0.0.1:${ES_PORT}:9200
+      - ${ES_IP}:${ES_PORT}:9200
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
     deploy:
       resources:
         limits:
-          cpus: '0.5'
-          memory: 1g
+          cpus: '1'
+          memory: 1.5g
+
+  elasticsearch-ui:  # Web UI
+    image: cars10/elasticvue:latest
+    container_name: ${ES_UI}
+    ports:
+      - ${ES_UI_IP}:${ES_UI_PORT}:8080
+    depends_on:
+      - elasticsearch
 
 volumes:
   elasticsearch_data:
