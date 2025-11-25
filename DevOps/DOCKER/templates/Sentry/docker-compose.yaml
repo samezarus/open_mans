@@ -52,11 +52,9 @@ services:
       SENTRY_REDIS_HOST: ${REDIS}
       SENTRY_REDIS_PORT: ${REDIS_PORT}
     # volumes:
-      # - "sentry/data:/data"
-      # - "sentry/sentry:/etc/sentry"
-      # - ./data/sentry/data:/data
-      # - ./data/sentry/sentry:/etc/sentry
-      # - ./data/sentry/logs:/var/log/sentry.log
+      # - ./data:/data
+      # - ./etc/sentry:/etc/sentry
+      # - ./var/log:/var/log
 
   sentry-cron:
     profiles: ["prod"]
