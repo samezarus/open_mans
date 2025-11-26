@@ -81,6 +81,10 @@ services:
     environment:
       LS_JAVA_OPTS: -Xms256m -Xmx256m
       LOGSTASH_INTERNAL_PASSWORD: ${LOGSTASH_INTERNAL_PASSWORD:-}
+      # remote elastic auth
+      REM_ELASTIC_HOST: ${REM_ELASTIC_HOST}
+      REM_ELASTIC_LOGIN: ${REM_ELASTIC_LOGIN}
+      REM_ELASTIC_PASSWORD: ${REM_ELASTIC_PASSWORD}
     networks:
       - elk
     depends_on:

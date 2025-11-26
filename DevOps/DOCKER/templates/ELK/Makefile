@@ -10,7 +10,7 @@ up:
 
 # down
 down:
-	docker compose down -v
+	docker compose down
 
 # hard restart
 restart: down up
