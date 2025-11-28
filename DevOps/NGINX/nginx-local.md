@@ -53,6 +53,41 @@ server {
 }
 ```
 
+## Авторизация по токену
+
+- Конфиг
+
+```
+map $http_authorization $auth_ok {
+    default          0;
+    "Bearer 1234567890" 1;
+}
+
+server {
+    ...
+
+    location / {
+        if ($auth_ok = 0) {
+            return 401;
+        }
+
+        proxy_pass http://127.0.0.1:11434;
+        ...
+    }
+    
+    ...
+}
+```
+
+- тест (список моделей)
+
+```
+  curl https://ollama2.derebass.ru/api/tags \
+  -H "Authorization: Bearer 1234567890" \
+  -H "Content-Type: application/json" 
+```
+
+
 ## LetsenCrypt
 
 ### Установка
