@@ -4,7 +4,7 @@ up:
 	${DOCKER_COMPOSE} up -d
 	
 down:
-	${DOCKER_COMPOSE} down -v
+	${DOCKER_COMPOSE} down
 
 restart: down up
 
