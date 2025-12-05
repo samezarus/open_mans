@@ -9,8 +9,16 @@ services:
       MINIO_ROOT_PASSWORD:        ${MINIO_ROOT_PASSWORD}
       MINIO_SERVER_URL:           ${MINIO_SERVER_URL}
       MINIO_BROWSER_REDIRECT_URL: ${MINIO_BROWSER_REDIRECT_URL}
+      MINIO_LOG_LEVEL:            info
+      MINIO_LOGGER:               file
+      MINIO_LOGGER_FILE_PATH:     /var/log/minio/minio.log
+      MINIO_AUDIT_LOGGER_JSON: 1
+      MINIO_AUDIT_LOGGER_CONFIG:  /var/log/minio/audit.json
+      #MC_TLS_SKIP_VERIFY: 1
     volumes:
       - minio-data_sal:/data
+      #- ${MINIO_SSL}:/usr/local/share/ca-certificates:ro
+      - ${MINIO_SSL}:/etc/ssl/certs:ro
     command: server /data --console-address ":9001"
 
   minio-nginx:
@@ -26,6 +34,7 @@ services:
       - ./config/nginx/templates:/etc/nginx/templates
       - ${MINIO_SSL}:/etc/nginx/ssl:ro
       - ${MINIO_LOG}/${MINIO}:/var/log/nginx
+      - ${MINIO_LOG}/${MINIO}:/var/log/minio
     depends_on:
       - minio
 
