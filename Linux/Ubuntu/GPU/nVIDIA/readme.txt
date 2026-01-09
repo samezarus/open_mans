@@ -16,6 +16,8 @@ CUDA Toolkit:
 	https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html
 
 	11.8:
+		nvidia p40/p100
+		pip install torch==2.0.1+cu118 torchvision==0.15.2+cu118 --extra-index-url https://download.pytorch.org/whl/cu118
 		https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local
 
 	12.8:
