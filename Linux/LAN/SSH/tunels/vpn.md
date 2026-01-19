@@ -14,6 +14,14 @@ sudo iptables -L >/dev/null 2>&1 && echo "iptables OK" || echo "sudo iptables Н
 
 ## Использование
 
+- Без DNS (интернет остаётся локальным)
+
 ``` bash
-sudo sshuttle --dns -r user@ssh-host 192.168.2.0/24
+sudo sshuttle -v -r user@ssh-host 192.168.2.0/24
+```
+
+- С DNS (интернет из удалённой сети)
+
+``` bash
+sudo sshuttle -v --dns -r user@ssh-host 192.168.2.0/24
 ```
