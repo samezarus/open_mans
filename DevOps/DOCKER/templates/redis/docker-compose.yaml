@@ -17,6 +17,8 @@ services:
     image: redislabs/redisinsight:latest
     container_name: redis-web
     restart: unless-stopped
+    depends_on:
+      - redis
     ports:
       - "${REDIS_PORT_WEB}:8001"
     volumes:
