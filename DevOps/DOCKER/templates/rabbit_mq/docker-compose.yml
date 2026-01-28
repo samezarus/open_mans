@@ -2,8 +2,6 @@
 
 # https://hub.docker.com/_/rabbitmq
 
-version: "3.5"
-
 services:
 
     rabbit-mq:
@@ -11,8 +9,8 @@ services:
         image: rabbitmq:3-management-alpine
         restart: always
         ports:
-            - ${RABBIT_PORT_EXT}:${RABBIT_PORT}
-            - ${RABBIT_PORT_WEB_EXT}:${RABBIT_PORT_WEB}
+            - ${RABBIT_PORT}:5672
+            - ${RABBIT_PORT_WEB}:15672
         environment:
             DEFAULT_NODE_PORT: ${RABBIT_PORT}
             RABBITMQ_DEFAULT_USER: ${RABBIT_USER}
