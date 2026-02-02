@@ -12,13 +12,13 @@ services:
       MINIO_LOG_LEVEL:            info
       MINIO_LOGGER:               file
       MINIO_LOGGER_FILE_PATH:     /var/log/minio/minio.log
-      MINIO_AUDIT_LOGGER_JSON: 1
+      MINIO_AUDIT_LOGGER_JSON:    1
       MINIO_AUDIT_LOGGER_CONFIG:  /var/log/minio/audit.json
       #MC_TLS_SKIP_VERIFY: 1
     volumes:
       - minio-data_sal:/data
       #- ${MINIO_SSL}:/usr/local/share/ca-certificates:ro
-      - ${MINIO_SSL}:/etc/ssl/certs:ro
+      #- ${MINIO_SSL}:/etc/ssl/certs:ro
     command: server /data --console-address ":9001"
 
   minio-nginx:

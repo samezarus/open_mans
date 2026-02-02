@@ -1,0 +1,8 @@
+# rabbit-mq
+RABBIT=rabbit-mq
+RABBIT_USER=admin
+RABBIT_PWD=admin
+RABBIT_PORT=5672
+RABBIT_PORT_WEB=15672
+
+DOCKER_COMPOSE=docker compose
